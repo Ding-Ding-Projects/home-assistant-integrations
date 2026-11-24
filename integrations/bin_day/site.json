@@ -1,8 +1,13 @@
 {
-  "accent": "#2e7d32",
-  "secondary": "#8bc34a",
-  "heading_font": "Fredoka",
-  "body_font": "Nunito",
+  "accent": "#d7f23a",
+  "secondary": "#58a6ff",
+  "heading_font": "Big Shoulders Display",
+  "body_font": "Public Sans",
+  "card_color": "#d7f23a",
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Public+Sans:wght@400;500;700&display=swap",
   "tagline": "Never miss the bin lorry again.",
-  "description": "Tracks a weekly or every-N-weeks rubbish or recycling collection and tells you when to put the bins out."
+  "hero_lead": "Rubbish, recycling and compost on their own schedules. Home Assistant knows the next collection and tells you the night before.",
+  "what_heading": "What it does",
+  "description": "Tracks a weekly or every-N-weeks rubbish or recycling collection and tells you when to put the bins out.",
+  "theme": "bin_day"
 }

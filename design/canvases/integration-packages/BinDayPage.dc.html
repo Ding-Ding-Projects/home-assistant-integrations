@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bin day website page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&amp;family=Public+Sans:wght@400;500;700&amp;display=swap"/>
+<style>
+body{margin:0}
+.bd{box-sizing:border-box;background:#17191b;color:#f2f2ec;font-family:"Public Sans",system-ui,sans-serif;font-size:16px;line-height:1.55;overflow:hidden}
+.bd *{box-sizing:border-box}
+.bd a{color:var(--ac)}
+.w{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.dsp{font-family:"Big Shoulders Display",Impact,sans-serif;text-transform:uppercase;font-weight:900;line-height:.88;letter-spacing:.005em}
+.nav{display:flex;gap:8px 20px;flex-wrap:wrap;align-items:center;padding-top:16px;padding-bottom:16px;font-size:14px}
+.nav a{min-height:44px;display:inline-flex;align-items:center;color:#c9cbc4;text-decoration:none}
+.nav a:hover{color:var(--ac)}
+.hero{display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-end;padding-top:clamp(20px,4vw,48px);padding-bottom:28px}
+.hero h1{font-size:clamp(88px,19vw,260px);margin:0;color:var(--ac);flex:1 1 420px;animation:bdslam .6s cubic-bezier(.2,0,0,1) both}
+.hero .side{flex:1 1 300px;max-width:420px;display:flex;flex-direction:column;gap:16px;padding-bottom:18px;animation:bdin .5s .15s cubic-bezier(.2,0,0,1) both}
+.btn{min-height:52px;padding:0 24px;border-radius:6px;background:var(--ac);color:#17191b !important;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;align-self:flex-start;transition:transform .2s}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:3px 3px 0 #f2f2ec}
+.road{display:block;width:100%;height:14px}
+.road line{animation:bdroad 1.2s linear infinite}
+.strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:6px;padding-top:22px;padding-bottom:22px}
+.day{background:#222528;border-radius:6px;padding:10px 8px 12px;display:flex;flex-direction:column;gap:8px;min-height:104px;animation:bdin .45s cubic-bezier(.2,0,0,1) both;transition:transform .2s, background .2s}
+.day:hover{transform:translateY(-4px);background:#2b2f33}
+.day.now{background:var(--ac);color:#17191b}
+.day .n{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;font-size:34px;line-height:1}
+.day .d{font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.dots{display:flex;gap:4px;margin-top:auto}
+.dots i{width:14px;height:14px;border-radius:3px;display:block}
+.key{display:flex;gap:8px 22px;flex-wrap:wrap;font-size:14px;color:#c9cbc4;padding-bottom:40px}
+.key span{display:inline-flex;gap:8px;align-items:center}
+.key i{width:14px;height:14px;border-radius:3px;display:block}
+.sec{display:flex;flex-wrap:wrap;gap:16px 48px;padding-top:36px;padding-bottom:36px;border-top:2px solid #33373b}
+.sec h2{font-size:clamp(40px,5vw,64px);margin:0;flex:0 0 260px;max-width:100%}
+.sec .body{flex:1 1 420px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.sec p{margin:0;color:#d5d7d0;max-width:64ch}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid #33373b;vertical-align:top}
+.tbl th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#a5a8a1;font-weight:500}
+.tbl code{font-size:13px;color:var(--ac);overflow-wrap:anywhere}
+.scroll{overflow-x:auto}
+.ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;counter-reset:s}
+.ol li{background:#222528;border-radius:6px;padding:16px;counter-increment:s;color:#d5d7d0;font-size:15px}
+.ol li::before{content:counter(s);display:block;font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;font-size:44px;line-height:1;color:var(--ac);margin-bottom:6px}
+.log{display:flex;gap:16px;flex-wrap:wrap;align-items:baseline}
+.log b{font-family:"Big Shoulders Display",Impact,sans-serif;font-size:30px;color:var(--ac)}
+.foot{padding-top:24px;padding-bottom:36px;font-size:14px;color:#a5a8a1;border-top:2px solid #33373b}
+@keyframes bdin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes bdslam{from{opacity:0;transform:translateY(-30px) scale(1.06)}to{opacity:1;transform:none}}
+@keyframes bdroad{to{stroke-dashoffset:-56}}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.bd, .bd *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<nav class="w nav" aria-label="Site">
+<a href="../" style="margin-right: auto">All integrations</a>
+<a href="#setup">Setup</a>
+<a href="#entities">Entities</a>
+<a href="#install">Install</a>
+<a href="#changelog">Changelog</a>
+</nav>
+<header class="w hero">
+<h1 class="dsp">Bin<br/>day</h1>
+<div class="side">
+<p style="margin: 0; font-size: 19px">Rubbish, recycling and compost on their own schedules. Home Assistant knows the next collection and tells you the night before.</p>
+<a class="btn" href="../packages/bin_day-1.0.0.hapkg" download=""><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"></path></svg>Download bin_day-1.0.0.hapkg</a>
+<span style="font-size: 13px; color: #a5a8a1">Version 1.0.0, published 21 November 2026</span>
+</div>
+</header>
+<svg class="road" aria-hidden="true"><line x1="0" y1="7" x2="100%" y2="7" stroke="#f2f2ec" stroke-width="4" stroke-dasharray="36 20"></line></svg>
+<div class="w">
+<div class="strip" role="img" aria-label="Two sample weeks from Monday 23 November: compost on Mondays, rubbish every Thursday, recycling every second Thursday">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="14">
+<div class="{{d.cls}}" style="animation-delay: {{d.delay}}">
+<span class="d">{{d.dow}}</span>
+<span class="n">{{d.num}}</span>
+<span class="dots"><i style="background: #b4b8bd; opacity: {{d.r}}"></i><i style="background: #58a6ff; opacity: {{d.b}}"></i><i style="background: #5ecb7a; opacity: {{d.g}}"></i></span>
+</div>
+</sc-for>
+</div>
+<div class="key"><span><i style="background: #b4b8bd"></i>Rubbish, weekly</span><span><i style="background: #58a6ff"></i>Recycling, every 2 weeks</span><span><i style="background: #5ecb7a"></i>Compost, weekly</span><span><i style="background: var(--ac)"></i>Today, Tuesday 24 November</span></div>
+<section class="sec">
+<h2 class="dsp">What it does</h2>
+<div class="body">
+<p>You describe each stream once: which weekday it goes out, and whether that is every week or every N weeks counted from a date you know was a collection day.</p>
+<p>From that it works out the next collection date for every stream, how many days away it is, and one simple flag, Put the bins out tonight, that turns on the evening before any collection.</p>
+</div>
+</section>
+<section class="sec" id="setup">
+<h2 class="dsp">Setup</h2>
+<div class="body">
+<ol class="ol">
+<li>Go to Settings, Devices and services, Add integration, and choose Bin day.</li>
+<li>Name a stream, pick its weekday, and choose weekly or every N weeks.</li>
+<li>For every N weeks, pick one date that was a collection day.</li>
+<li>Add more streams the same way. Each one becomes a device.</li>
+</ol>
+</div>
+</section>
+<section class="sec" id="entities">
+<h2 class="dsp">Entities</h2>
+<div class="body scroll">
+<table class="tbl">
+<thead><tr><th scope="col">Entity</th><th scope="col">Shows</th><th scope="col">Example</th></tr></thead>
+<tbody>
+<tr><td><code>sensor.rubbish_next_collection</code></td><td>Date of the next collection, one per stream</td><td>26 November 2026</td></tr>
+<tr><td><code>sensor.rubbish_days_until</code></td><td>Whole days until that date</td><td>2</td></tr>
+<tr><td><code>binary_sensor.put_the_bins_out_tonight</code></td><td>On during the evening before any collection</td><td>Off today, on tomorrow</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="sec">
+<h2 class="dsp">Options</h2>
+<div class="body">
+<p>Change any stream later from the integration's Configure button: weekday, interval in weeks, the reference date, and the hour from which Put the bins out tonight turns on (18:00 by default).</p>
+</div>
+</section>
+<section class="sec" id="install">
+<h2 class="dsp">Install</h2>
+<div class="body">
+<p>Download the package above, open the Marketplace page in Home Assistant, and drag the file anywhere onto it. Check the source and the verified checksums, confirm, then restart when asked. On a phone, use Install from a package file instead.</p>
+</div>
+</section>
+<section class="sec" id="changelog">
+<h2 class="dsp">Changelog</h2>
+<div class="body">
+<div class="log"><b>1.0.0</b><span style="color: #a5a8a1">21 November 2026</span></div>
+<p>First release: weekly and every-N-weeks streams, next collection date, days until, and the Put the bins out tonight flag.</p>
+</div>
+</section>
+<footer class="foot">Source: <a href="https://github.com/Ding-Ding-Projects/home-assistant-integrations/tree/main/bin_day">Ding-Ding-Projects/home-assistant-integrations/bin_day</a></footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#d7f23a","options":["#d7f23a","#ffd23f","#ff9a4d","#7df0c2"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":1280,"height":1700}}'>
+const DOW = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#d7f23a';
+    const motion = this.props.motion ?? true;
+    const days = [];
+    for (let i = 0; i < 14; i++) {
+      const n = 23 + i;
+      const dow = i % 7;
+      days.push({
+        dow: DOW[dow], num: n > 30 ? n - 30 : n,
+        cls: i === 1 ? 'day now' : 'day',
+        delay: (0.03 * i).toFixed(2) + 's',
+        r: dow === 3 ? 1 : 0.12,
+        b: i === 3 ? 1 : 0.12,
+        g: dow === 0 ? 1 : 0.12
+      });
+    }
+    return { accent, rootClass: motion ? 'bd' : 'bd still', days };
+  }
+}
+</script>
+</body>
+</html>

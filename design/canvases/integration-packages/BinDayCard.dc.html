@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bin day in Home Assistant</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Big+Shoulders+Display:wght@900&amp;display=swap"/>
+<style>
+body{margin:0}
+.ha{box-sizing:border-box;min-height:844px;background:#121412;color:#e3e6e1;font-family:Roboto,system-ui,sans-serif;padding:12px 16px 24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.ha *{box-sizing:border-box}
+.ha button,.ha input,.ha select{font:inherit}
+.ha button{cursor:pointer}
+.top{display:flex;align-items:center;min-height:48px;gap:8px}
+.top h1{font-size:22px;font-weight:500;margin:0;flex:1}
+.card{background:#1a1d1a;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px;animation:hain .45s cubic-bezier(.2,0,0,1) both}
+.card.b{animation-delay:.08s}
+.ch{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.ch span{font-size:16px;font-weight:500}
+.sub{font-size:13px;color:#a9b0a7;line-height:1.45}
+.btn{min-height:44px;padding:0 20px;border-radius:22px;border:0;background:var(--ac);color:#0f1410;font-size:14px;font-weight:500;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn.tonal{background:#2a2f2a;color:#e3e6e1}
+.btn.text{background:transparent;color:var(--ac)}
+.rowb{display:flex;align-items:center;gap:12px;min-height:56px;width:100%;background:#20241f;border:2px solid transparent;border-radius:16px;padding:8px 12px;color:#e3e6e1;text-align:left;transition:transform .2s,background .2s,border-color .2s}
+.rowb:hover{transform:translateY(-2px);background:#262b26}
+.rowb.on{border-color:var(--ac)}
+.rowb .g{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;font-size:15px}
+.rowb .v{font-size:14px;color:var(--ac);white-space:nowrap}
+.ent{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;font-size:14px}
+.ent b{font-weight:500;color:var(--ac)}
+.scrim{position:absolute;inset:0;background:rgba(8,10,8,.78);display:flex;align-items:flex-end;padding:12px;animation:hafade .2s both;z-index:5}
+.dlg{width:100%;background:#232723;border-radius:28px;padding:22px 20px 16px;display:flex;flex-direction:column;gap:14px;animation:hapop .3s cubic-bezier(.2,0,0,1) both}
+.dlg h2{font-size:22px;font-weight:400;margin:0}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#a9b0a7}
+.fld input,.fld select{min-height:48px;width:100%;border-radius:12px;border:1px solid #5a605a;background:#1a1d1a;color:#e3e6e1;padding:0 14px;font-size:15px}
+.fld input:focus,.fld select:focus{outline:2px solid var(--ac);outline-offset:1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.acts{display:flex;gap:8px;justify-content:flex-end}
+@keyframes hain{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes hafade{from{opacity:0}to{opacity:1}}
+@keyframes hapop{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.big{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;font-size:120px;line-height:.82;color:var(--ac);transition:color .2s}
+.hero{display:flex;gap:14px;align-items:flex-end}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.wk div{background:#20241f;border-radius:6px;padding:6px 2px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:#a9b0a7;text-transform:uppercase}
+.wk div b{font-family:"Big Shoulders Display",Impact,sans-serif;font-size:22px;line-height:1;color:#e3e6e1}
+.wk div.now{background:var(--ac);color:#0f1410}
+.wk div.now b{color:#0f1410}
+.wk i{display:flex;gap:2px;height:8px}
+.wk i u{width:8px;height:8px;border-radius:2px;display:block}
+.sq{width:16px;height:16px;border-radius:4px;flex:none}
+.flag{display:flex;gap:12px;align-items:center;background:#20241f;border-radius:16px;padding:12px}
+.road{display:block;width:100%;height:8px}
+.road line{animation:rd 1.2s linear infinite}
+@keyframes rd{to{stroke-dashoffset:-30}}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.ha, .ha *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<div class="top"><h1>Home</h1><span class="sub">Tuesday 24 November</span></div>
+<div class="card">
+<div class="ch"><span>Bin day</span><button class="btn tonal" onClick="{{ openDlg }}">Options</button></div>
+<div class="hero"><span class="big">{{sel.days}}</span><div style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 8px"><span style="font-size: 16px; font-weight: 500">days until {{sel.lower}}</span><span class="sub">{{sel.date}}, {{sel.every}}</span></div></div>
+<svg class="road" aria-hidden="true"><line x1="0" y1="4" x2="100%" y2="4" stroke="#5a605a" stroke-width="3" stroke-dasharray="18 12"></line></svg>
+<div class="wk" role="img" aria-label="This week: compost on Monday 23, today is Tuesday 24, rubbish and recycling on Thursday 26">
+<sc-for list="{{week}}" as="d" hint-placeholder-count="7"><div class="{{d.cls}}"><span>{{d.dow}}</span><b>{{d.num}}</b><i><u style="background: #b4b8bd; opacity: {{d.r}}"></u><u style="background: #58a6ff; opacity: {{d.b}}"></u><u style="background: #5ecb7a; opacity: {{d.g}}"></u></i></div></sc-for>
+</div>
+<sc-for list="{{streams}}" as="s" hint-placeholder-count="3">
+<button class="{{s.cls}}" aria-pressed="{{s.aria}}" onClick="{{ s.pick }}"><span class="sq" style="background: {{s.color}}"></span><span class="g"><span>{{s.name}}</span><span class="sub">{{s.date}}</span></span><span class="v">in {{s.days}} days</span></button>
+</sc-for>
+</div>
+<div class="card b">
+<div class="flag"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a9b0a7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14l-1.5 12a2 2 0 0 1-2 1.8h-7a2 2 0 0 1-2-1.8z"></path><path d="M3.5 7h17M9 4h6"></path></svg><div style="display: flex; flex-direction: column; gap: 2px; flex: 1"><span style="font-size: 15px">Put the bins out tonight</span><span class="sub">Turns on Wednesday 25 November at 18:00</span></div><b style="font-weight: 500; color: #a9b0a7">Off</b></div>
+</div>
+<sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+<div class="scrim">
+<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-t">
+<h2 id="dlg-t">Rubbish schedule</h2>
+<label class="fld" for="bd-day">Collection day<select id="bd-day"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option selected="selected">Thursday</option><option>Friday</option></select></label>
+<div class="two">
+<label class="fld" for="bd-rep">Repeats<select id="bd-rep"><option selected="selected">Every week</option><option>Every 2 weeks</option><option>Every 3 weeks</option><option>Every 4 weeks</option></select></label>
+<label class="fld" for="bd-ref">A known collection date<input id="bd-ref" type="date" value="2026-11-19"/></label>
+</div>
+<label class="fld" for="bd-time">Remind from this time the evening before<input id="bd-time" type="time" value="18:00"/></label>
+<div class="acts"><button class="btn text" onClick="{{ closeDlg }}">Cancel</button><button class="btn" onClick="{{ closeDlg }}">Save</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#d7f23a","options":["#d7f23a","#ffd23f","#ff9a4d","#7df0c2"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = Object.assign({ open: false }, { sel: 0 }); }
+  renderVals() {
+    const accent = this.props.accent ?? "#d7f23a";
+    const motion = this.props.motion ?? true;
+    const st = this.state;
+    const set = (o) => this.setState(o);
+    const v = { accent, rootClass: motion ? "ha" : "ha still", open: st.open, openDlg: () => set({ open: true }), closeDlg: () => set({ open: false }) };
+    const S = [
+      { name: "Rubbish", lower: "rubbish", date: "Thursday 26 November", every: "every week", days: 2, color: "#b4b8bd" },
+      { name: "Recycling", lower: "recycling", date: "Thursday 26 November", every: "every 2 weeks", days: 2, color: "#58a6ff" },
+      { name: "Compost", lower: "compost", date: "Monday 30 November", every: "every week", days: 6, color: "#5ecb7a" }
+    ];
+    v.streams = S.map((s, i) => Object.assign({}, s, { cls: i === st.sel ? "rowb on" : "rowb", aria: i === st.sel ? "true" : "false", pick: () => set({ sel: i }) }));
+    v.sel = S[st.sel];
+    v.week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d, i) => ({ dow: d, num: 23 + i, cls: i === 1 ? "now" : "", r: i === 3 ? 1 : 0.15, b: i === 3 ? 1 : 0.15, g: i === 0 ? 1 : 0.15 }));
+    return v;
+  }
+}
+</script>
+</body>
+</html>

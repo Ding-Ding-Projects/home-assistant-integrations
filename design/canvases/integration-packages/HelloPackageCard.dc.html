@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hello package in Home Assistant</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Geist+Mono:wght@400;600&amp;display=swap"/>
+<style>
+body{margin:0}
+.ha{box-sizing:border-box;min-height:844px;background:#121412;color:#e3e6e1;font-family:Roboto,system-ui,sans-serif;padding:12px 16px 24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.ha *{box-sizing:border-box}
+.ha button,.ha input,.ha select{font:inherit}
+.ha button{cursor:pointer}
+.top{display:flex;align-items:center;min-height:48px;gap:8px}
+.top h1{font-size:22px;font-weight:500;margin:0;flex:1}
+.card{background:#1a1d1a;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px;animation:hain .45s cubic-bezier(.2,0,0,1) both}
+.card.b{animation-delay:.08s}
+.ch{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.ch span{font-size:16px;font-weight:500}
+.sub{font-size:13px;color:#a9b0a7;line-height:1.45}
+.btn{min-height:44px;padding:0 20px;border-radius:22px;border:0;background:var(--ac);color:#0f1410;font-size:14px;font-weight:500;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn.tonal{background:#2a2f2a;color:#e3e6e1}
+.btn.text{background:transparent;color:var(--ac)}
+.rowb{display:flex;align-items:center;gap:12px;min-height:56px;width:100%;background:#20241f;border:2px solid transparent;border-radius:16px;padding:8px 12px;color:#e3e6e1;text-align:left;transition:transform .2s,background .2s,border-color .2s}
+.rowb:hover{transform:translateY(-2px);background:#262b26}
+.rowb.on{border-color:var(--ac)}
+.rowb .g{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;font-size:15px}
+.rowb .v{font-size:14px;color:var(--ac);white-space:nowrap}
+.ent{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;font-size:14px}
+.ent b{font-weight:500;color:var(--ac)}
+.scrim{position:absolute;inset:0;background:rgba(8,10,8,.78);display:flex;align-items:flex-end;padding:12px;animation:hafade .2s both;z-index:5}
+.dlg{width:100%;background:#232723;border-radius:28px;padding:22px 20px 16px;display:flex;flex-direction:column;gap:14px;animation:hapop .3s cubic-bezier(.2,0,0,1) both}
+.dlg h2{font-size:22px;font-weight:400;margin:0}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#a9b0a7}
+.fld input,.fld select{min-height:48px;width:100%;border-radius:12px;border:1px solid #5a605a;background:#1a1d1a;color:#e3e6e1;padding:0 14px;font-size:15px}
+.fld input:focus,.fld select:focus{outline:2px solid var(--ac);outline-offset:1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.acts{display:flex;gap:8px;justify-content:flex-end}
+@keyframes hain{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes hafade{from{opacity:0}to{opacity:1}}
+@keyframes hapop{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.gm{font-family:"Geist Mono",ui-monospace,monospace}
+.stage{background:#0d0f0d;border:1px solid #2f342f;border-radius:16px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:14px;position:relative}
+.stage::before,.stage::after{content:"+";position:absolute;font-family:"Geist Mono",ui-monospace,monospace;color:#8d948b;font-size:14px;line-height:1}
+.stage::before{top:8px;left:10px}.stage::after{bottom:8px;right:10px}
+.box path{stroke-dasharray:120;stroke-dashoffset:120;animation:bx 1.4s cubic-bezier(.2,0,0,1) forwards}
+.box.x path{animation-name:bx2}
+.still .box path{stroke-dashoffset:0}
+@keyframes bx{to{stroke-dashoffset:0}}
+@keyframes bx2{to{stroke-dashoffset:0}}
+.ver{font-size:44px;font-weight:600;color:var(--ac);line-height:1}
+.tree{margin:0;font-size:13px;line-height:1.7;color:#c3c8c1;background:#0d0f0d;border:1px solid #2f342f;border-radius:16px;padding:14px 16px;overflow-x:auto}
+.tree b{color:var(--ac);font-weight:600}
+@media (prefers-reduced-motion: reduce){.box path{stroke-dashoffset:0}}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.ha, .ha *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<div class="top"><h1>Home</h1><span class="sub">Tuesday 24 November</span></div>
+<div class="card">
+<div class="ch"><span>Hello package</span><button class="btn tonal" onClick="{{ openDlg }}">Options</button></div>
+<div class="stage">
+<svg class="{{boxCls}}" aria-hidden="true" width="140" height="140" viewBox="0 0 48 48" fill="none" stroke="{{accent}}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16l18-10 18 10v16l-18 10-18-10z"></path><path d="M6 16l18 10 18-10"></path><path d="M24 26v16"></path><path d="M15 11l18 10"></path></svg>
+<span class="gm ver">1.0.0</span>
+<span class="sub gm">sensor.package_demo</span>
+</div>
+<div class="ent"><span>Package demo</span><b class="gm">1.0.0</b></div>
+<div><button class="btn text" onClick="{{ reload }}" style="padding: 0 8px">Reload</button></div>
+</div>
+<div class="card b">
+<span class="sub">What is in the package</span>
+<pre class="tree gm">hello_package-1.0.0.hapkg
+  <b>hapkg.json</b>
+  custom_components/hello_package/
+    __init__.py
+    manifest.json
+    sensor.py</pre>
+</div>
+<sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+<div class="scrim">
+<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-t">
+<h2 id="dlg-t">Hello package options</h2>
+<label class="fld" for="hp-name">Sensor name<input id="hp-name" type="text" value="Package demo"/></label>
+<span class="sub">That is the only option. This package exists to show the smallest thing that installs.</span>
+<div class="acts"><button class="btn text" onClick="{{ closeDlg }}">Cancel</button><button class="btn" onClick="{{ closeDlg }}">Save</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#7aa2ff","options":["#7aa2ff","#e3e6e1","#7ee0b8","#f4c15d"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = Object.assign({ open: false }, { n: 0 }); }
+  renderVals() {
+    const accent = this.props.accent ?? "#7aa2ff";
+    const motion = this.props.motion ?? true;
+    const st = this.state;
+    const set = (o) => this.setState(o);
+    const v = { accent, rootClass: motion ? "ha" : "ha still", open: st.open, openDlg: () => set({ open: true }), closeDlg: () => set({ open: false }) };
+    v.boxCls = st.n % 2 ? "box x" : "box";
+    v.reload = () => set({ n: st.n + 1 });
+    return v;
+  }
+}
+</script>
+</body>
+</html>

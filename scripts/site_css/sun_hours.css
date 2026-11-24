@@ -1,0 +1,44 @@
+.sn{box-sizing:border-box;background:#ffe8d2;color:#1d1b3a;font-family:Figtree,system-ui,sans-serif;font-size:18px;line-height:1.55;overflow:hidden}
+.sn *{box-sizing:border-box}
+.w{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.ub{font-family:Unbounded,system-ui,sans-serif}
+.nav{display:flex;gap:8px 22px;flex-wrap:wrap;align-items:center;padding-top:16px;padding-bottom:8px;font-size:15px;font-weight:500}
+.nav a{min-height:44px;display:inline-flex;align-items:center;color:#1d1b3a;text-decoration:none}
+.nav a:hover{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:3px}
+.hero{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:36px}
+.hero svg{display:block;width:100%;height:auto;max-height:440px}
+.arc{stroke-dasharray:1500;stroke-dashoffset:1500;animation:sndraw 1.6s .1s cubic-bezier(.2,0,0,1) forwards}
+.sunw{animation:snrise 1.6s .1s cubic-bezier(.2,0,0,1) both}
+.halo{animation:snhalo 3s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+.core{--fs:clamp(72px,16vw,200px);display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;animation:snin .7s .5s cubic-bezier(.2,0,0,1) both}
+.core .n{font-size:var(--fs);font-weight:800;line-height:.9;letter-spacing:-.05em;margin-top:calc(var(--fs) * -0.9 - 30px);margin-bottom:30px}
+.core h1{font-size:clamp(18px,2.2vw,26px);font-weight:500;margin:0;letter-spacing:-.01em}
+.core p{margin:10px 0 0;max-width:50ch}
+.btn{margin-top:14px;min-height:54px;padding:0 28px;border-radius:27px;background:var(--ac);color:#1d1b3a !important;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:transform .25s cubic-bezier(.2,1.4,.3,1), box-shadow .25s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 0 8px rgba(29,27,58,.1)}
+.band{padding-top:44px;padding-bottom:44px}
+.band .w{display:flex;flex-wrap:wrap;gap:14px 56px;align-items:flex-start}
+.when{flex:0 0 250px;max-width:100%;display:flex;flex-direction:column;gap:2px}
+.when b{font-size:clamp(34px,4.4vw,54px);font-weight:800;line-height:1;letter-spacing:-.04em}
+.when span{font-size:13px;text-transform:uppercase;letter-spacing:.14em;font-weight:700}
+.what{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.what h2{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:0}
+.what p{margin:0;max-width:62ch}
+.what ol{margin:0;padding-left:22px}
+.what a{color:inherit}
+.ents{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.ents div{background:#ffe8d2;border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:4px;transition:transform .25s cubic-bezier(.2,0,0,1)}
+.ents div:hover{transform:translateY(-4px)}
+.ents code{font-size:13px;overflow-wrap:anywhere}
+.ents b{font-size:26px}
+.b1{background:#ffe8d2}.b2{background:#ffd7ab}.b3{background:#ffc47f}.b4{background:#f4a55e}.b5{background:#4a3f73;color:#ffe8d2}.b6{background:#1d1b3a;color:#ffe8d2}
+@keyframes sndraw{to{stroke-dashoffset:0}}
+@keyframes snrise{from{transform:translate(-330px,250px)}to{transform:none}}
+@keyframes snhalo{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@keyframes snin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.still .arc{stroke-dashoffset:0}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.sn .arc{stroke-dashoffset:0}.sn, .sn *{animation:none!important;transition:none!important}}
+
+.btn svg{display:inline-block;width:18px;height:18px;max-height:none;flex:none}
+.btn{text-align:left}

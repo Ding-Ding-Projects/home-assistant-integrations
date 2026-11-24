@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hello package website page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist+Mono:wght@400;600&amp;display=swap"/>
+<style>
+body{margin:0}
+.hp{box-sizing:border-box;background:#fafafa;color:#0a0a0a;font-family:"Geist Mono",ui-monospace,monospace;font-size:15px;line-height:1.7;overflow:hidden}
+.hp *{box-sizing:border-box}
+.hp a{color:var(--ac)}
+.w{max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
+.nav{display:flex;gap:4px 20px;flex-wrap:wrap;align-items:center;padding-top:14px;padding-bottom:14px;font-size:13px}
+.nav a{min-height:44px;display:inline-flex;align-items:center;color:#0a0a0a;text-decoration:none}
+.nav a:hover{color:var(--ac)}
+.rule{border:0;border-top:1px solid #0a0a0a;margin:0}
+.hero{position:relative;display:flex;flex-direction:column;gap:16px;padding-top:48px;padding-bottom:48px;animation:hpin .5s cubic-bezier(.2,0,0,1) both}
+.mark{position:absolute;font-size:16px;line-height:1;color:#0a0a0a}
+.hero h1{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(64px,13vw,148px);line-height:.88;letter-spacing:-.03em;margin:0}
+.hero h1 i{color:var(--ac)}
+.hero p{margin:0;max-width:52ch}
+.box{align-self:flex-start;transition:transform .5s cubic-bezier(.2,1.4,.3,1)}
+.box:hover{transform:rotate(8deg) scale(1.05)}
+.box path{stroke-dasharray:130;stroke-dashoffset:130;animation:hpdraw 1.6s .2s cubic-bezier(.2,0,0,1) forwards}
+.btn{min-height:48px;padding:0 20px;border:1px solid #0a0a0a;background:#0a0a0a;color:#fafafa !important;text-decoration:none;display:inline-flex;align-items:center;gap:10px;align-self:flex-start;transition:background .2s,border-color .2s,transform .2s}
+.btn:hover{background:var(--ac);border-color:var(--ac);transform:translate(2px,-2px)}
+.s{display:grid;grid-template-columns:minmax(0,140px) minmax(0,1fr);gap:8px 24px;padding-top:26px;padding-bottom:26px;border-top:1px solid #d4d4d4}
+.s .k{font-size:13px;color:#525252}
+.s .k b{color:var(--ac);font-weight:600}
+.s .v{display:flex;flex-direction:column;gap:10px;min-width:0}
+.s h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:34px;line-height:1.05;letter-spacing:-.01em;margin:0}
+.s p{margin:0}
+.s ol{margin:0;padding-left:22px}
+pre{margin:0;background:#fff;border:1px solid #0a0a0a;padding:16px;overflow-x:auto;font-family:inherit;font-size:13px;line-height:1.7;transition:box-shadow .2s, transform .2s}
+pre:hover{transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--ac)}
+pre b{color:var(--ac);font-weight:600}
+.foot{padding-top:20px;padding-bottom:40px;border-top:1px solid #0a0a0a;font-size:13px}
+@media (max-width:560px){.s{grid-template-columns:1fr}}
+@keyframes hpin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes hpdraw{to{stroke-dashoffset:0}}
+.still .box path{stroke-dashoffset:0}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.hp .box path{stroke-dashoffset:0}.hp, .hp *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<nav class="w nav" aria-label="Site">
+<a href="../" style="margin-right: auto">../</a>
+<a href="#setup">setup</a>
+<a href="#entities">entities</a>
+<a href="#install">install</a>
+<a href="#changelog">changelog</a>
+</nav>
+<hr class="rule"/>
+<div class="w">
+<header class="hero">
+<span class="mark" aria-hidden="true" style="top: 14px; left: 4px">+</span>
+<span class="mark" aria-hidden="true" style="top: 14px; right: 4px">+</span>
+<span class="mark" aria-hidden="true" style="bottom: 14px; left: 4px">+</span>
+<span class="mark" aria-hidden="true" style="bottom: 14px; right: 4px">+</span>
+<svg class="box" aria-hidden="true" width="132" height="132" viewBox="0 0 48 48" fill="none" stroke="{{accent}}" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16l18-10 18 10v16l-18 10-18-10z"></path><path d="M6 16l18 10 18-10"></path><path d="M24 26v16"></path><path d="M15 11l18 10"></path></svg>
+<h1>Hello, <i>package.</i></h1>
+<p>The smallest thing that installs. One integration, one sensor, and the sensor says which version of the package it came from. Start here if you want to build your own.</p>
+<a class="btn" href="../packages/hello_package-1.0.0.hapkg" download=""><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"></path></svg>hello_package-1.0.0.hapkg</a>
+</header>
+<section class="s">
+<span class="k"><b>01</b> / what it does</span>
+<div class="v"><h2>It proves the pipeline works</h2><p>If this package installs, updates and shows its sensor, then packaging, checksums, the Marketplace drop and the update check are all working on your system.</p></div>
+</section>
+<section class="s">
+<span class="k"><b>02</b> / inside</span>
+<div class="v"><h2>A ZIP with a manifest</h2>
+<pre>hello_package-1.0.0.hapkg
+  <b>hapkg.json</b>
+  custom_components/hello_package/
+    __init__.py
+    manifest.json
+    sensor.py</pre>
+<pre>{
+  "title": "Hello package",
+  "version": "<b>1.0.0</b>",
+  "kind": "integration",
+  "domain": "hello_package",
+  "source": "Ding-Ding-Projects/home-assistant-integrations",
+  "update_url": "https://ding-ding-projects.github.io/home-assistant-integrations/index.json",
+  "files": { "custom_components/hello_package/sensor.py": "sha256 of the file" }
+}</pre></div>
+</section>
+<section class="s" id="setup">
+<span class="k"><b>03</b> / setup</span>
+<div class="v"><h2>Add it, press Submit</h2><ol><li>Settings, Devices and services, Add integration.</li><li>Choose Hello package and press Submit.</li></ol></div>
+</section>
+<section class="s" id="entities">
+<span class="k"><b>04</b> / entities</span>
+<div class="v"><h2>One sensor</h2><pre>sensor.package_demo    <b>1.0.0</b></pre><p>Named Package demo. Its state is the version of the installed package.</p></div>
+</section>
+<section class="s">
+<span class="k"><b>05</b> / options</span>
+<div class="v"><h2>One field</h2><p>Configure lets you rename the sensor. That is all.</p></div>
+</section>
+<section class="s" id="install">
+<span class="k"><b>06</b> / install</span>
+<div class="v"><h2>Drag, drop, confirm</h2><p>Download the file, open the Marketplace page in Home Assistant, and drop it anywhere on the page. Check the source and the verified checksums, confirm, then restart when asked. On a phone, use Install from a package file.</p></div>
+</section>
+<section class="s" id="changelog">
+<span class="k"><b>07</b> / changelog</span>
+<div class="v"><h2>1.0.0</h2><p>21 November 2026. First release.</p></div>
+</section>
+<footer class="foot">source: <a href="https://github.com/Ding-Ding-Projects/home-assistant-integrations/tree/main/hello_package">Ding-Ding-Projects/home-assistant-integrations/hello_package</a></footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#2f5bff","options":["#2f5bff","#d6336c","#0b7a53","#b45309"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":1280,"height":1700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#2f5bff';
+    const motion = this.props.motion ?? true;
+    return { accent, rootClass: motion ? 'hp' : 'hp still' };
+  }
+}
+</script>
+</body>
+</html>

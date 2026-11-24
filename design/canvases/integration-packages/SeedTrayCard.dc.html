@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Seed tray in Home Assistant</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&amp;display=swap"/>
+<style>
+body{margin:0}
+.ha{box-sizing:border-box;min-height:844px;background:#121412;color:#e3e6e1;font-family:Roboto,system-ui,sans-serif;padding:12px 16px 24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.ha *{box-sizing:border-box}
+.ha button,.ha input,.ha select{font:inherit}
+.ha button{cursor:pointer}
+.top{display:flex;align-items:center;min-height:48px;gap:8px}
+.top h1{font-size:22px;font-weight:500;margin:0;flex:1}
+.card{background:#1a1d1a;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px;animation:hain .45s cubic-bezier(.2,0,0,1) both}
+.card.b{animation-delay:.08s}
+.ch{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.ch span{font-size:16px;font-weight:500}
+.sub{font-size:13px;color:#a9b0a7;line-height:1.45}
+.btn{min-height:44px;padding:0 20px;border-radius:22px;border:0;background:var(--ac);color:#0f1410;font-size:14px;font-weight:500;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn.tonal{background:#2a2f2a;color:#e3e6e1}
+.btn.text{background:transparent;color:var(--ac)}
+.rowb{display:flex;align-items:center;gap:12px;min-height:56px;width:100%;background:#20241f;border:2px solid transparent;border-radius:16px;padding:8px 12px;color:#e3e6e1;text-align:left;transition:transform .2s,background .2s,border-color .2s}
+.rowb:hover{transform:translateY(-2px);background:#262b26}
+.rowb.on{border-color:var(--ac)}
+.rowb .g{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;font-size:15px}
+.rowb .v{font-size:14px;color:var(--ac);white-space:nowrap}
+.ent{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;font-size:14px}
+.ent b{font-weight:500;color:var(--ac)}
+.scrim{position:absolute;inset:0;background:rgba(8,10,8,.78);display:flex;align-items:flex-end;padding:12px;animation:hafade .2s both;z-index:5}
+.dlg{width:100%;background:#232723;border-radius:28px;padding:22px 20px 16px;display:flex;flex-direction:column;gap:14px;animation:hapop .3s cubic-bezier(.2,0,0,1) both}
+.dlg h2{font-size:22px;font-weight:400;margin:0}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#a9b0a7}
+.fld input,.fld select{min-height:48px;width:100%;border-radius:12px;border:1px solid #5a605a;background:#1a1d1a;color:#e3e6e1;padding:0 14px;font-size:15px}
+.fld input:focus,.fld select:focus{outline:2px solid var(--ac);outline-offset:1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.acts{display:flex;gap:8px;justify-content:flex-end}
+@keyframes hain{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes hafade{from{opacity:0}to{opacity:1}}
+@keyframes hapop{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.bg{font-family:"Bricolage Grotesque",system-ui,sans-serif}
+.tray{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:#2b2118;border-radius:16px;padding:8px}
+.cell{aspect-ratio:1/1;min-height:64px;border-radius:10px;border:2px solid transparent;background:#3a2c20;color:#8fd07f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:2px;transition:transform .2s,border-color .2s,background .2s}
+.cell:hover{transform:translateY(-3px);background:#463628}
+.cell.on{border-color:var(--ac)}
+.cell.ready{color:#f4c15d}
+.cell span{font-size:10px;color:#e6d9c6;line-height:1.1;text-align:center}
+.grow{animation:gr .6s cubic-bezier(.2,1.4,.3,1) both;transform-origin:50% 100%;transform-box:fill-box}
+@keyframes gr{from{transform:scaleY(0)}to{transform:none}}
+.nm{font-size:30px;font-weight:800;line-height:1}
+.bar{height:10px;border-radius:5px;background:#2b2118;overflow:hidden}
+.bar span{display:block;height:100%;border-radius:5px;background:var(--ac);transition:width .5s cubic-bezier(.2,0,0,1)}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.ha, .ha *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<div class="top"><h1>Home</h1><span class="sub">Tuesday 24 November</span></div>
+<div class="card">
+<div class="ch"><span>Seed tray</span><button class="btn tonal" onClick="{{ openDlg }}">Sow a tray</button></div>
+<div class="tray">
+<sc-for list="{{cells}}" as="c" hint-placeholder-count="7">
+<button class="{{c.cls}}" aria-pressed="{{c.aria}}" aria-label="{{c.label}}" onClick="{{ c.pick }}"><sc-if value="{{c.s0}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="17" rx="2.6" ry="1.8"></ellipse></svg></sc-if>
+<sc-if value="{{c.s1}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><g class="grow"><path d="M12 20v-6M12 14c0-2.6-2-4-4.5-4 0 2.6 2 4 4.5 4zM12 15.5c0-2 1.6-3.2 3.8-3.2 0 2-1.6 3.2-3.8 3.2z"></path></g></svg></sc-if>
+<sc-if value="{{c.s2}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><g class="grow"><path d="M12 21V8M12 12c0-4-3-6-7-6 0 4 3 6 7 6zM12 15c0-3 2.5-5 6-5 0 3-2.5 5-6 5zM12 8c0-2 1-3.5 2.6-4.4"></path></g></svg></sc-if><span>{{c.short}}</span></button>
+</sc-for>
+<button class="cell" aria-label="Sow another tray" onClick="{{ openDlg }}" style="color: #a9b0a7"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 6v12M6 12h12"></path></svg><span>Add</span></button>
+</div>
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px"><span class="bg nm">{{sel.name}}</span><span class="sub">Sown {{sel.sown}}</span></div>
+<div class="bar" role="progressbar" aria-label="Progress to transplant" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{sel.pct}}"><span style="width: {{sel.pctCss}}"></span></div>
+<div class="ent"><span>Stage</span><b>{{sel.stage}}</b></div>
+<div class="ent"><span>Days to transplant</span><b>{{sel.left}}</b></div>
+<div class="ent"><span>Days since sowing</span><b>{{sel.d}}</b></div>
+</div>
+<sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+<div class="scrim">
+<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-t">
+<h2 id="dlg-t">Sow a tray</h2>
+<label class="fld" for="st-crop">Crop<select id="st-crop"><option>Radish</option><option>Lettuce</option><option>Spinach</option><option>Carrot</option><option>Sugar snap pea</option><option>Mung bean</option><option>Adzuki bean</option></select></label>
+<label class="fld" for="st-date">Sow date<input id="st-date" type="date" value="2026-11-24"/></label>
+<div class="two">
+<label class="fld" for="st-g">Days to germinate<input id="st-g" type="number" min="1" value="4"/></label>
+<label class="fld" for="st-t">Days to transplant<input id="st-t" type="number" min="1" value="14"/></label>
+</div>
+<div class="acts"><button class="btn text" onClick="{{ closeDlg }}">Cancel</button><button class="btn" onClick="{{ closeDlg }}">Sow</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#7cc86a","options":["#7cc86a","#b7d968","#f4c15d","#8fd0c0"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = Object.assign({ open: false }, { sel: 0 }); }
+  renderVals() {
+    const accent = this.props.accent ?? "#7cc86a";
+    const motion = this.props.motion ?? true;
+    const st = this.state;
+    const set = (o) => this.setState(o);
+    const v = { accent, rootClass: motion ? "ha" : "ha still", open: st.open, openDlg: () => set({ open: true }), closeDlg: () => set({ open: false }) };
+    const C = [
+      ["Radish", 16, 4, 14], ["Lettuce", 10, 5, 28], ["Spinach", 12, 7, 28], ["Carrot", 18, 14, 35],
+      ["Sugar snap pea", 3, 8, 21], ["Mung bean", 20, 5, 18], ["Adzuki bean", 14, 7, 21]
+    ];
+    const cells = C.map((c, i) => {
+      const d = 24 - c[1];
+      const left = Math.max(0, c[3] - d);
+      const stage = d < c[2] ? "Germinating" : (left > 0 ? "Growing on" : "Ready to transplant");
+      const pct = Math.min(100, Math.round(100 * d / c[3]));
+      return { name: c[0], short: c[0].split(" ")[0], sown: c[1] + " November", d, left, stage, pct, pctCss: pct + "%",
+        s0: d < c[2], s1: d >= c[2] && left > 0, s2: left === 0,
+        label: c[0] + ", " + stage + ", " + left + " days to transplant",
+        cls: "cell" + (i === st.sel ? " on" : "") + (left === 0 ? " ready" : ""), aria: i === st.sel ? "true" : "false", pick: () => set({ sel: i }) };
+    });
+    v.cells = cells;
+    v.sel = cells[st.sel];
+    return v;
+  }
+}
+</script>
+</body>
+</html>

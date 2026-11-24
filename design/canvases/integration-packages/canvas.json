@@ -1,0 +1,408 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-24T12:00:00Z"
+ },
+ "title": "Integration packages",
+ "launch": {
+  "view": "canvas",
+  "page": "marketplace"
+ },
+ "pages": [
+  {
+   "id": "marketplace",
+   "name": "Marketplace packages"
+  },
+  {
+   "id": "site",
+   "name": "Integrations website"
+  },
+  {
+   "id": "bin_day",
+   "name": "Bin day"
+  },
+  {
+   "id": "countdown",
+   "name": "Countdown"
+  },
+  {
+   "id": "github_releases",
+   "name": "GitHub releases"
+  },
+  {
+   "id": "seed_tray",
+   "name": "Seed tray"
+  },
+  {
+   "id": "sun_hours",
+   "name": "Sun hours"
+  },
+  {
+   "id": "hello_package",
+   "name": "Hello package"
+  }
+ ],
+ "boards": {
+  "PackageDrop.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "marketplace",
+   "title": "Package drop on a phone",
+   "is_interactive": true
+  },
+  "PackageDropWide.dc.html": {
+   "x": 830,
+   "y": 0,
+   "w": 1280,
+   "h": 900,
+   "page": "marketplace",
+   "title": "Package drop on a desktop",
+   "is_interactive": true,
+   "expand": "fill"
+  },
+  "PackageUpdates.dc.html": {
+   "x": 2550,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "marketplace",
+   "title": "Installed packages and updates",
+   "is_interactive": true
+  },
+  "SiteHome.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 1500,
+   "page": "site",
+   "title": "Website home page",
+   "is_interactive": true,
+   "expand": "fill"
+  },
+  "SiteHomePhone.dc.html": {
+   "x": 1720,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "site",
+   "title": "Website home page on a phone",
+   "is_interactive": true
+  },
+  "BinDayPage.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 1700,
+   "page": "bin_day",
+   "title": "Bin day website page",
+   "expand": "fill"
+  },
+  "BinDayCard.dc.html": {
+   "x": 1720,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "bin_day",
+   "title": "Bin day in Home Assistant",
+   "is_interactive": true
+  },
+  "CountdownPage.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 1700,
+   "page": "countdown",
+   "title": "Countdown website page",
+   "expand": "fill"
+  },
+  "CountdownCard.dc.html": {
+   "x": 1720,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "countdown",
+   "title": "Countdown in Home Assistant",
+   "is_interactive": true
+  },
+  "GithubReleasesPage.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 1700,
+   "page": "github_releases",
+   "title": "GitHub releases website page",
+   "expand": "fill"
+  },
+  "GithubReleasesCard.dc.html": {
+   "x": 1720,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "github_releases",
+   "title": "GitHub releases in Home Assistant",
+   "is_interactive": true
+  },
+  "SeedTrayPage.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 1700,
+   "page": "seed_tray",
+   "title": "Seed tray website page",
+   "expand": "fill"
+  },
+  "SeedTrayCard.dc.html": {
+   "x": 1720,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "seed_tray",
+   "title": "Seed tray in Home Assistant",
+   "is_interactive": true
+  },
+  "SunHoursPage.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 1700,
+   "page": "sun_hours",
+   "title": "Sun hours website page",
+   "expand": "fill"
+  },
+  "SunHoursCard.dc.html": {
+   "x": 1720,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "sun_hours",
+   "title": "Sun hours in Home Assistant",
+   "is_interactive": true
+  },
+  "HelloPackagePage.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 1700,
+   "page": "hello_package",
+   "title": "Hello package website page",
+   "expand": "fill"
+  },
+  "HelloPackageCard.dc.html": {
+   "x": 1720,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "hello_package",
+   "title": "Hello package in Home Assistant",
+   "is_interactive": true
+  }
+ },
+ "order": [
+  "PackageDrop.dc.html",
+  "PackageDropWide.dc.html",
+  "PackageUpdates.dc.html",
+  "SiteHome.dc.html",
+  "SiteHomePhone.dc.html",
+  "BinDayPage.dc.html",
+  "BinDayCard.dc.html",
+  "CountdownPage.dc.html",
+  "CountdownCard.dc.html",
+  "GithubReleasesPage.dc.html",
+  "GithubReleasesCard.dc.html",
+  "SeedTrayPage.dc.html",
+  "SeedTrayCard.dc.html",
+  "SunHoursPage.dc.html",
+  "SunHoursCard.dc.html",
+  "HelloPackagePage.dc.html",
+  "HelloPackageCard.dc.html"
+ ],
+ "notes": {
+  "n_PackageDrop": {
+   "x": 430,
+   "y": 0,
+   "w": 320,
+   "text": "The Marketplace page with package installs. Press Simulate drag to see the full-panel drop overlay, then step through the flow with the buttons or the stage Tweak (idle, dragging, found, wrong-file). The found dialog needs the risk box ticked before Add is enabled. Tweaks: accent, motion, stage. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "marketplace"
+  },
+  "n_PackageDropWide": {
+   "x": 2150,
+   "y": 0,
+   "w": 320,
+   "text": "The same install flow at desktop width, with the store grid behind the overlay and dialog. Try the stage Tweak and the Simulate drag button; resize to see the grid wrap. Tweaks: accent, motion, stage. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "marketplace"
+  },
+  "n_PackageUpdates": {
+   "x": 2980,
+   "y": 0,
+   "w": 320,
+   "text": "Installed packages, one card each, covering every update state: up to date, update available with notes, updating with progress, restart needed, and update failed with the reason and the old version kept. Flip the Update automatically switches and press Update or Retry. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "marketplace"
+  },
+  "n_SiteHome": {
+   "x": 1320,
+   "y": 0,
+   "w": 320,
+   "text": "The public website home page listing all six integrations, each card carrying its own colour and motif. Try the light and dark switch in the header or the dark Tweak, and hover the cards. Tweaks: accent, motion, dark. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "site"
+  },
+  "n_SiteHomePhone": {
+   "x": 2150,
+   "y": 0,
+   "w": 320,
+   "text": "The same home page at phone width: one column, full-width download buttons, scrolls inside the frame. Try the dark Tweak. Tweaks: accent, motion, dark. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "site"
+  },
+  "n_BinDayPage": {
+   "x": 1320,
+   "y": 0,
+   "w": 320,
+   "text": "The Bin day page on the integrations website: what it does, setup, entities created, options, install by drag and drop, and the changelog. Kerbside identity: asphalt black and high-visibility lime, Big Shoulders Display with Public Sans, a week-strip calendar and wheelie-bin icons. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "bin_day"
+  },
+  "n_BinDayCard": {
+   "x": 2150,
+   "y": 0,
+   "w": 320,
+   "text": "How Bin day looks inside Home Assistant: its entities on a dashboard card and its options dialog, in the dark house style with this integration's accent and motif. Tap a stream to change which collection is next, and open Options to change the schedule. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "bin_day"
+  },
+  "n_CountdownPage": {
+   "x": 1320,
+   "y": 0,
+   "w": 320,
+   "text": "The Countdown page on the integrations website: what it does, setup, entities created, options, install by drag and drop, and the changelog. Editorial identity: warm paper, ink and vermilion, Fraunces with DM Mono, oversized numerals and tear-off calendar leaves. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "countdown"
+  },
+  "n_CountdownCard": {
+   "x": 2150,
+   "y": 0,
+   "w": 320,
+   "text": "How Countdown looks inside Home Assistant: its entities on a dashboard card and its options dialog, in the dark house style with this integration's accent and motif. Tap a date to feature it, and open Add a date to see the form. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "countdown"
+  },
+  "n_GithubReleasesPage": {
+   "x": 1320,
+   "y": 0,
+   "w": 320,
+   "text": "The GitHub releases page on the integrations website: what it does, setup, entities created, options, install by drag and drop, and the changelog. Changelog identity: near-black with violet and mint, Space Grotesk with IBM Plex Mono, a vertical release rail with tag nodes. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "github_releases"
+  },
+  "n_GithubReleasesCard": {
+   "x": 2150,
+   "y": 0,
+   "w": 320,
+   "text": "How GitHub releases looks inside Home Assistant: its entities on a dashboard card and its options dialog, in the dark house style with this integration's accent and motif. Tap a repository to expand it, and open Options to change the watch list. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "github_releases"
+  },
+  "n_SeedTrayPage": {
+   "x": 1320,
+   "y": 0,
+   "w": 320,
+   "text": "The Seed tray page on the integrations website: what it does, setup, entities created, options, install by drag and drop, and the changelog. Potting-bench identity: parchment, soil brown and sprout green, Bricolage Grotesque with Newsreader, a tray of cells with drawn seedlings. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "seed_tray"
+  },
+  "n_SeedTrayCard": {
+   "x": 2150,
+   "y": 0,
+   "w": 320,
+   "text": "How Seed tray looks inside Home Assistant: its entities on a dashboard card and its options dialog, in the dark house style with this integration's accent and motif. Tap a cell in the tray to see that crop, and open Sow a tray to see the form. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "seed_tray"
+  },
+  "n_SunHoursPage": {
+   "x": 1320,
+   "y": 0,
+   "w": 320,
+   "text": "The Sun hours page on the integrations website: what it does, setup, entities created, options, install by drag and drop, and the changelog. Horizon identity: peach sky, deep indigo and amber, Unbounded with Figtree, a sun travelling along an arc over a horizon line. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "sun_hours"
+  },
+  "n_SunHoursCard": {
+   "x": 2150,
+   "y": 0,
+   "w": 320,
+   "text": "How Sun hours looks inside Home Assistant: its entities on a dashboard card and its options dialog, in the dark house style with this integration's accent and motif. Drag the time slider to move the sun along its arc, and open Options. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "sun_hours"
+  },
+  "n_HelloPackagePage": {
+   "x": 1320,
+   "y": 0,
+   "w": 320,
+   "text": "The Hello package page on the integrations website: what it does, setup, entities created, options, install by drag and drop, and the changelog. Blueprint identity: white, black and one electric blue, Instrument Serif with Geist Mono, a wireframe box and a file tree. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "hello_package"
+  },
+  "n_HelloPackageCard": {
+   "x": 2150,
+   "y": 0,
+   "w": 320,
+   "text": "How Hello package looks inside Home Assistant: its entities on a dashboard card and its options dialog, in the dark house style with this integration's accent and motif. Open Options to see the one-field dialog, and press Reload to replay the entrance. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "hello_package"
+  },
+  "t_marketplace": {
+   "x": 0,
+   "y": -300,
+   "text": "Marketplace packages",
+   "kind": "title1",
+   "maxW": 3300,
+   "page": "marketplace"
+  },
+  "t_site": {
+   "x": 0,
+   "y": -300,
+   "text": "Integrations website",
+   "kind": "title1",
+   "maxW": 2470,
+   "page": "site"
+  },
+  "t_bin_day": {
+   "x": 0,
+   "y": -300,
+   "text": "Bin day",
+   "kind": "title1",
+   "maxW": 2470,
+   "page": "bin_day"
+  },
+  "t_countdown": {
+   "x": 0,
+   "y": -300,
+   "text": "Countdown",
+   "kind": "title1",
+   "maxW": 2470,
+   "page": "countdown"
+  },
+  "t_github_releases": {
+   "x": 0,
+   "y": -300,
+   "text": "GitHub releases",
+   "kind": "title1",
+   "maxW": 2470,
+   "page": "github_releases"
+  },
+  "t_seed_tray": {
+   "x": 0,
+   "y": -300,
+   "text": "Seed tray",
+   "kind": "title1",
+   "maxW": 2470,
+   "page": "seed_tray"
+  },
+  "t_sun_hours": {
+   "x": 0,
+   "y": -300,
+   "text": "Sun hours",
+   "kind": "title1",
+   "maxW": 2470,
+   "page": "sun_hours"
+  },
+  "t_hello_package": {
+   "x": 0,
+   "y": -300,
+   "text": "Hello package",
+   "kind": "title1",
+   "maxW": 2470,
+   "page": "hello_package"
+  }
+ },
+ "designSystems": []
+}

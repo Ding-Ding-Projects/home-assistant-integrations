@@ -1,0 +1,46 @@
+.sh{--bg:#fbfaf7;--fg:#17181a;--mut:#565a60;--card:#ffffff;--line:#dedcd6;--soft:#f0eee8;box-sizing:border-box;min-height:100%;background:var(--bg);color:var(--fg);font-family:"Plus Jakarta Sans",system-ui,sans-serif;transition:background .3s,color .3s}
+@media (prefers-color-scheme:dark){.sh{--bg:#0f1012;--fg:#f1f1ee;--mut:#a8abb0;--card:#191b1e;--line:#2d3035;--soft:#1f2226}}
+.sh *{box-sizing:border-box}
+.sh a{color:inherit}
+.sh button{font:inherit;cursor:pointer}
+.w{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.nav{display:flex;align-items:center;gap:8px 20px;flex-wrap:wrap;padding-top:18px;padding-bottom:18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;text-decoration:none;min-height:44px;margin-right:auto}
+.nav a.l{min-height:44px;display:inline-flex;align-items:center;text-decoration:none;font-size:15px;font-weight:500;color:var(--mut);transition:color .2s}
+.nav a.l:hover{color:var(--fg)}
+.tg{min-height:44px;padding:0 16px;border-radius:22px;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:transform .2s}
+.tg:hover{transform:translateY(-1px)}
+.hero{padding-top:clamp(32px,7vw,88px);padding-bottom:clamp(28px,5vw,56px);display:flex;flex-direction:column;gap:20px;animation:shin .5s cubic-bezier(.2,0,0,1) both}
+.hero h1{font-size:clamp(34px,6.4vw,76px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:0;max-width:15ch}
+.hero h1 em{font-style:normal;box-shadow:inset 0 -.28em 0 var(--ac)}
+.hero p{font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--mut);margin:0;max-width:60ch}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.b{min-height:48px;padding:0 22px;border-radius:14px;border:0;font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:transform .2s cubic-bezier(.2,0,0,1), box-shadow .2s}
+.b:hover{transform:translateY(-2px)}
+.b.p{background:var(--ac);color:#fff !important}
+.b.s{background:var(--soft);color:var(--fg)}
+.b.k{background:var(--fg);color:var(--bg) !important;min-height:44px;font-size:14px;border-radius:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;padding-bottom:56px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;display:flex;flex-direction:column;gap:12px;animation:shin .5s cubic-bezier(.2,0,0,1) both;transition:transform .3s cubic-bezier(.2,0,0,1), box-shadow .3s, border-color .3s}
+.c:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(0,0,0,.14);border-color:var(--c)}
+.c:hover .m{transform:rotate(-6deg) scale(1.06)}
+.m{width:64px;height:64px;border-radius:20px;background:var(--c);color:#111;display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,1.4,.3,1)}
+.c h2{font-size:22px;letter-spacing:-.02em;margin:0;font-weight:800}
+.c p{margin:0;font-size:15px;line-height:1.5;color:var(--mut);flex:1}
+.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--mut)}
+.dot{width:10px;height:10px;border-radius:5px;background:var(--c)}
+.cf{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap}
+.more{min-height:44px;display:inline-flex;align-items:center;font-size:14px;font-weight:600}
+.how{background:var(--soft);padding-top:48px;padding-bottom:48px}
+.how h2{font-size:clamp(24px,3vw,34px);letter-spacing:-.02em;margin:0 0 20px;font-weight:800}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;list-style:none;padding:0;margin:0}
+.steps li{background:var(--card);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.5;color:var(--mut)}
+.steps b{color:var(--fg);font-size:17px}
+.num{font-size:13px;color:var(--mut)}
+.foot{padding-top:28px;padding-bottom:36px;display:flex;gap:10px 24px;flex-wrap:wrap;font-size:14px;color:var(--mut)}
+.foot a{min-height:44px;display:inline-flex;align-items:center}
+@keyframes shin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.sh, .sh *{animation:none!important;transition:none!important}}
+@media (max-width:480px){.cf .b{flex:1 1 100%;justify-content:center}}

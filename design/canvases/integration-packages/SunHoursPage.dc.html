@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sun hours website page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&amp;family=Figtree:wght@400;500;700&amp;display=swap"/>
+<style>
+body{margin:0}
+.sn{box-sizing:border-box;background:#ffe8d2;color:#1d1b3a;font-family:Figtree,system-ui,sans-serif;font-size:18px;line-height:1.55;overflow:hidden}
+.sn *{box-sizing:border-box}
+.w{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.ub{font-family:Unbounded,system-ui,sans-serif}
+.nav{display:flex;gap:8px 22px;flex-wrap:wrap;align-items:center;padding-top:16px;padding-bottom:8px;font-size:15px;font-weight:500}
+.nav a{min-height:44px;display:inline-flex;align-items:center;color:#1d1b3a;text-decoration:none}
+.nav a:hover{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:3px}
+.hero{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:36px}
+.hero svg{display:block;width:100%;height:auto;max-height:440px}
+.arc{stroke-dasharray:1500;stroke-dashoffset:1500;animation:sndraw 1.6s .1s cubic-bezier(.2,0,0,1) forwards}
+.sunw{animation:snrise 1.6s .1s cubic-bezier(.2,0,0,1) both}
+.halo{animation:snhalo 3s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+.core{--fs:clamp(72px,16vw,200px);display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;animation:snin .7s .5s cubic-bezier(.2,0,0,1) both}
+.core .n{font-size:var(--fs);font-weight:800;line-height:.9;letter-spacing:-.05em;margin-top:calc(var(--fs) * -0.9 - 30px);margin-bottom:30px}
+.core h1{font-size:clamp(18px,2.2vw,26px);font-weight:500;margin:0;letter-spacing:-.01em}
+.core p{margin:10px 0 0;max-width:50ch}
+.btn{margin-top:14px;min-height:54px;padding:0 28px;border-radius:27px;background:var(--ac);color:#1d1b3a !important;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:transform .25s cubic-bezier(.2,1.4,.3,1), box-shadow .25s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 0 8px rgba(29,27,58,.1)}
+.band{padding-top:44px;padding-bottom:44px}
+.band .w{display:flex;flex-wrap:wrap;gap:14px 56px;align-items:flex-start}
+.when{flex:0 0 250px;max-width:100%;display:flex;flex-direction:column;gap:2px}
+.when b{font-size:clamp(34px,4.4vw,54px);font-weight:800;line-height:1;letter-spacing:-.04em}
+.when span{font-size:13px;text-transform:uppercase;letter-spacing:.14em;font-weight:700}
+.what{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.what h2{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:0}
+.what p{margin:0;max-width:62ch}
+.what ol{margin:0;padding-left:22px}
+.what a{color:inherit}
+.ents{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.ents div{background:#ffe8d2;border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:4px;transition:transform .25s cubic-bezier(.2,0,0,1)}
+.ents div:hover{transform:translateY(-4px)}
+.ents code{font-size:13px;overflow-wrap:anywhere}
+.ents b{font-size:26px}
+.b1{background:#ffe8d2}.b2{background:#ffd7ab}.b3{background:#ffc47f}.b4{background:#f4a55e}.b5{background:#4a3f73;color:#ffe8d2}.b6{background:#1d1b3a;color:#ffe8d2}
+@keyframes sndraw{to{stroke-dashoffset:0}}
+@keyframes snrise{from{transform:translate(-330px,250px)}to{transform:none}}
+@keyframes snhalo{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@keyframes snin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.still .arc{stroke-dashoffset:0}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.sn .arc{stroke-dashoffset:0}.sn, .sn *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<nav class="w nav" aria-label="Site">
+<a href="../" style="margin-right: auto">All integrations</a>
+<a href="#setup">Setup</a>
+<a href="#entities">Entities</a>
+<a href="#install">Install</a>
+<a href="#changelog">Changelog</a>
+</nav>
+<header class="w hero">
+<svg viewBox="0 -70 1000 510" role="img" aria-label="The sun high on its arc above the horizon">
+<path class="arc" d="M100 420 A400 400 0 0 1 900 420" fill="none" stroke="#1d1b3a" stroke-width="3"></path>
+<line x1="0" y1="420" x2="1000" y2="420" stroke="#1d1b3a" stroke-width="3"></line>
+<g class="sunw">
+<circle class="halo" cx="390" cy="35" r="62" fill="none" stroke="{{accent}}" stroke-width="3"></circle>
+<circle cx="390" cy="35" r="40" fill="{{accent}}"></circle>
+</g>
+<g stroke="#1d1b3a" stroke-width="3" stroke-linecap="round"><line x1="100" y1="408" x2="100" y2="432"></line><line x1="900" y1="408" x2="900" y2="432"></line></g>
+</svg>
+<div class="core">
+<span class="ub n">563</span>
+<h1 class="ub">minutes of daylight today</h1>
+<p>Sun hours tells Home Assistant how long the day is at your home, and whether today is longer or shorter than yesterday. In this sample, 2 minutes shorter.</p>
+<a class="btn" href="../packages/sun_hours-1.0.0.hapkg" download=""><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"></path></svg>Download sun_hours-1.0.0.hapkg</a>
+</div>
+</header>
+<section class="band b2">
+<div class="w">
+<div class="when"><span>Dawn</span><b class="ub">What it does</b></div>
+<div class="what"><h2>Two numbers from where you live</h2><p>It uses the home location already set in Home Assistant to work out the time between sunrise and sunset, in minutes, and compares it with the day before. Nothing is fetched from the internet.</p></div>
+</div>
+</section>
+<section class="band b3" id="setup">
+<div class="w">
+<div class="when"><span>Morning</span><b class="ub">Setup</b></div>
+<div class="what"><h2>One step, no questions</h2><ol><li>Check your home location under Settings, System, General.</li><li>Settings, Devices and services, Add integration, Sun hours.</li><li>Press Submit. The sensors appear straight away.</li></ol></div>
+</div>
+</section>
+<section class="band b4" id="entities">
+<div class="w">
+<div class="when"><span>Noon</span><b class="ub">Entities</b></div>
+<div class="what"><h2>Entities created</h2>
+<div class="ents">
+<div><code>sensor.sun_hours_daylight_today</code><b class="ub">563 min</b><span>Minutes between sunrise and sunset today.</span></div>
+<div><code>sensor.sun_hours_change_since_yesterday</code><b class="ub">-2 min</b><span>Positive when days are getting longer.</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="band b5">
+<div class="w">
+<div class="when"><span>Afternoon</span><b class="ub">Options</b></div>
+<div class="what"><h2>How to count, how to show</h2><p>Choose whether daylight is shown as minutes or as hours and minutes, and whether the day ends at the horizon or at civil twilight. The location always follows your home location.</p></div>
+</div>
+</section>
+<section class="band b5" id="install" style="padding-top: 0">
+<div class="w">
+<div class="when"><span>Dusk</span><b class="ub">Install</b></div>
+<div class="what"><h2>Drop the file on the Marketplace</h2><p>Download the package, open the Marketplace page in Home Assistant, and drag the file anywhere onto it. Check the source and the verified checksums, confirm, then restart when asked. On a phone, use Install from a package file.</p></div>
+</div>
+</section>
+<section class="band b6" id="changelog">
+<div class="w">
+<div class="when"><span>Night</span><b class="ub">Changelog</b></div>
+<div class="what"><h2>1.0.0, 21 November 2026</h2><p>First release: daylight today and change since yesterday, from the home location.</p><p>Source: <a href="https://github.com/Ding-Ding-Projects/home-assistant-integrations/tree/main/sun_hours">Ding-Ding-Projects/home-assistant-integrations/sun_hours</a></p></div>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#ff9a1f","options":["#ff9a1f","#ff6b4a","#f5c518","#ff7eb6"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":1280,"height":1700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#ff9a1f';
+    const motion = this.props.motion ?? true;
+    return { accent, rootClass: motion ? 'sn' : 'sn still' };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Countdown in Home Assistant</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,700&amp;family=DM+Mono&amp;display=swap"/>
+<style>
+body{margin:0}
+.ha{box-sizing:border-box;min-height:844px;background:#121412;color:#e3e6e1;font-family:Roboto,system-ui,sans-serif;padding:12px 16px 24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.ha *{box-sizing:border-box}
+.ha button,.ha input,.ha select{font:inherit}
+.ha button{cursor:pointer}
+.top{display:flex;align-items:center;min-height:48px;gap:8px}
+.top h1{font-size:22px;font-weight:500;margin:0;flex:1}
+.card{background:#1a1d1a;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px;animation:hain .45s cubic-bezier(.2,0,0,1) both}
+.card.b{animation-delay:.08s}
+.ch{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.ch span{font-size:16px;font-weight:500}
+.sub{font-size:13px;color:#a9b0a7;line-height:1.45}
+.btn{min-height:44px;padding:0 20px;border-radius:22px;border:0;background:var(--ac);color:#0f1410;font-size:14px;font-weight:500;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn.tonal{background:#2a2f2a;color:#e3e6e1}
+.btn.text{background:transparent;color:var(--ac)}
+.rowb{display:flex;align-items:center;gap:12px;min-height:56px;width:100%;background:#20241f;border:2px solid transparent;border-radius:16px;padding:8px 12px;color:#e3e6e1;text-align:left;transition:transform .2s,background .2s,border-color .2s}
+.rowb:hover{transform:translateY(-2px);background:#262b26}
+.rowb.on{border-color:var(--ac)}
+.rowb .g{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;font-size:15px}
+.rowb .v{font-size:14px;color:var(--ac);white-space:nowrap}
+.ent{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;font-size:14px}
+.ent b{font-weight:500;color:var(--ac)}
+.scrim{position:absolute;inset:0;background:rgba(8,10,8,.78);display:flex;align-items:flex-end;padding:12px;animation:hafade .2s both;z-index:5}
+.dlg{width:100%;background:#232723;border-radius:28px;padding:22px 20px 16px;display:flex;flex-direction:column;gap:14px;animation:hapop .3s cubic-bezier(.2,0,0,1) both}
+.dlg h2{font-size:22px;font-weight:400;margin:0}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#a9b0a7}
+.fld input,.fld select{min-height:48px;width:100%;border-radius:12px;border:1px solid #5a605a;background:#1a1d1a;color:#e3e6e1;padding:0 14px;font-size:15px}
+.fld input:focus,.fld select:focus{outline:2px solid var(--ac);outline-offset:1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.acts{display:flex;gap:8px;justify-content:flex-end}
+@keyframes hain{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes hafade{from{opacity:0}to{opacity:1}}
+@keyframes hapop{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.leaf{background:#f6efe4;color:#1c1917;border-radius:8px 8px 20px 20px;padding:0 16px 16px;display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+.perf{display:flex;gap:10px;justify-content:center;padding:8px 0 4px;width:100%;border-bottom:2px dashed #c9bfae}
+.perf i{width:10px;height:10px;border-radius:5px;background:#121412;display:block}
+.num{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:150px;line-height:.95;letter-spacing:-.04em;animation:flip .5s cubic-bezier(.2,0,0,1) both;transform-origin:top center}
+.num.x{animation-name:flip2}
+.cap{font-family:"DM Mono",ui-monospace,monospace;font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#5b534a}
+.what{font-family:Fraunces,Georgia,serif;font-size:24px;text-align:center;line-height:1.15}
+.tag{font-family:"DM Mono",ui-monospace,monospace;font-size:12px;color:#a9b0a7}
+@keyframes flip{from{opacity:0;transform:perspective(600px) rotateX(-70deg)}to{opacity:1;transform:none}}
+@keyframes flip2{from{opacity:0;transform:perspective(600px) rotateX(-70deg)}to{opacity:1;transform:none}}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.ha, .ha *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<div class="top"><h1>Home</h1><span class="sub">Tuesday 24 November</span></div>
+<div class="card">
+<div class="ch"><span>Countdown</span><button class="btn tonal" onClick="{{ openDlg }}">Add a date</button></div>
+<div class="leaf">
+<div class="perf" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<span class="cap" style="padding-top: 10px">Days until</span>
+<span class="{{numCls}}" style="color: #c8331d">{{sel.days}}</span>
+<span class="what">{{sel.name}}</span>
+<span class="cap">{{sel.date}} / {{sel.kind}}</span>
+</div>
+<sc-for list="{{dates}}" as="d" hint-placeholder-count="4">
+<button class="{{d.cls}}" aria-pressed="{{d.aria}}" onClick="{{ d.pick }}"><span class="g"><span>{{d.name}}</span><span class="tag">{{d.date}} / {{d.kind}}</span></span><span class="v">{{d.days}} days</span></button>
+</sc-for>
+</div>
+<sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+<div class="scrim">
+<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-t">
+<h2 id="dlg-t">Add a date</h2>
+<label class="fld" for="cd-name">Name<input id="cd-name" type="text" value="Passport renewal"/></label>
+<label class="fld" for="cd-date">Date<input id="cd-date" type="date" value="2027-03-15"/></label>
+<label class="fld" for="cd-rep">Repeats<select id="cd-rep"><option>Every year</option><option selected="selected">Just once</option></select></label>
+<div class="acts"><button class="btn text" onClick="{{ closeDlg }}">Cancel</button><button class="btn" onClick="{{ closeDlg }}">Add</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#ff8a70","options":["#ff8a70","#f4c15d","#9fd0c4","#e7a6d0"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = Object.assign({ open: false }, { sel: 2, n: 0 }); }
+  renderVals() {
+    const accent = this.props.accent ?? "#ff8a70";
+    const motion = this.props.motion ?? true;
+    const st = this.state;
+    const set = (o) => this.setState(o);
+    const v = { accent, rootClass: motion ? "ha" : "ha still", open: st.open, openDlg: () => set({ open: true }), closeDlg: () => set({ open: false }) };
+    const D = [
+      { name: "Mum’s birthday", date: "3 December 2026", kind: "yearly", days: 9 },
+      { name: "Car insurance renewal", date: "14 December 2026", kind: "one-off", days: 20 },
+      { name: "Christmas Day", date: "25 December 2026", kind: "yearly", days: 31 },
+      { name: "Wedding anniversary", date: "6 February 2027", kind: "yearly", days: 74 }
+    ];
+    v.dates = D.map((d, i) => Object.assign({}, d, { cls: i === st.sel ? "rowb on" : "rowb", aria: i === st.sel ? "true" : "false", pick: () => set({ sel: i, n: st.n + 1 }) }));
+    v.sel = D[st.sel];
+    v.numCls = st.n % 2 ? "num x" : "num";
+    return v;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,8 +1,13 @@
 {
-  "accent": "#558b2f",
-  "secondary": "#ffb300",
-  "heading_font": "Merriweather",
-  "body_font": "Source Sans 3",
+  "accent": "#2f7a2c",
+  "secondary": "#f4c15d",
+  "heading_font": "Bricolage Grotesque",
+  "body_font": "Newsreader",
+  "card_color": "#7cc86a",
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap",
   "tagline": "From sown to transplanted, on schedule.",
-  "description": "Tracks a seed-starting tray from sowing through germination to transplant day."
+  "hero_lead": "Tell Home Assistant what you sowed and when. It follows each sowing through germination to transplant day and counts down the days in between.",
+  "what_heading": "Four stages, worked out from two numbers",
+  "description": "Tracks a seed-starting tray from sowing through germination to transplant day.",
+  "theme": "seed_tray"
 }

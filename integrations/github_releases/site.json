@@ -1,8 +1,13 @@
 {
-  "accent": "#5e35b1",
-  "secondary": "#26c6da",
+  "accent": "#a78bfa",
+  "secondary": "#7ee0b8",
   "heading_font": "Space Grotesk",
-  "body_font": "Inter",
+  "body_font": "IBM Plex Mono",
+  "card_color": "#a78bfa",
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap",
   "tagline": "Know the moment a project ships.",
-  "description": "Watches public GitHub repositories and reports each one's latest release tag and publish time, with no account or token."
+  "hero_lead": "Watch any public GitHub repository. Home Assistant holds the latest release tag and when it was published, ready for a dashboard or an automation.",
+  "what_heading": "One device per repository",
+  "description": "Watches public GitHub repositories and reports each one's latest release tag and publish time, with no account or token.",
+  "theme": "github_releases"
 }

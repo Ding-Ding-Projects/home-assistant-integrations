@@ -1,8 +1,13 @@
 {
-  "accent": "#c2185b",
-  "secondary": "#ff8a65",
-  "heading_font": "Playfair Display",
-  "body_font": "Lato",
+  "accent": "#c8331d",
+  "secondary": "#1c1917",
+  "heading_font": "Fraunces",
+  "body_font": "DM Mono",
+  "card_color": "#ff7a5c",
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=DM+Mono:wght@400;500&display=swap",
   "tagline": "Days until the dates that matter.",
-  "description": "Counts down to any number of named dates, repeating yearly (birthdays, anniversaries, renewals) or one-off."
+  "hero_lead": "Name the dates that matter. Home Assistant counts the days to each one and remembers which come round again every year.",
+  "what_heading": "One sensor per date, counting down",
+  "description": "Counts down to any number of named dates, repeating yearly (birthdays, anniversaries, renewals) or one-off.",
+  "theme": "countdown"
 }

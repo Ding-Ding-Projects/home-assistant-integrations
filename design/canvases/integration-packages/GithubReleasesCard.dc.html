@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GitHub releases in Home Assistant</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap"/>
+<style>
+body{margin:0}
+.ha{box-sizing:border-box;min-height:844px;background:#121412;color:#e3e6e1;font-family:Roboto,system-ui,sans-serif;padding:12px 16px 24px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.ha *{box-sizing:border-box}
+.ha button,.ha input,.ha select{font:inherit}
+.ha button{cursor:pointer}
+.top{display:flex;align-items:center;min-height:48px;gap:8px}
+.top h1{font-size:22px;font-weight:500;margin:0;flex:1}
+.card{background:#1a1d1a;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px;animation:hain .45s cubic-bezier(.2,0,0,1) both}
+.card.b{animation-delay:.08s}
+.ch{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.ch span{font-size:16px;font-weight:500}
+.sub{font-size:13px;color:#a9b0a7;line-height:1.45}
+.btn{min-height:44px;padding:0 20px;border-radius:22px;border:0;background:var(--ac);color:#0f1410;font-size:14px;font-weight:500;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn.tonal{background:#2a2f2a;color:#e3e6e1}
+.btn.text{background:transparent;color:var(--ac)}
+.rowb{display:flex;align-items:center;gap:12px;min-height:56px;width:100%;background:#20241f;border:2px solid transparent;border-radius:16px;padding:8px 12px;color:#e3e6e1;text-align:left;transition:transform .2s,background .2s,border-color .2s}
+.rowb:hover{transform:translateY(-2px);background:#262b26}
+.rowb.on{border-color:var(--ac)}
+.rowb .g{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;font-size:15px}
+.rowb .v{font-size:14px;color:var(--ac);white-space:nowrap}
+.ent{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;font-size:14px}
+.ent b{font-weight:500;color:var(--ac)}
+.scrim{position:absolute;inset:0;background:rgba(8,10,8,.78);display:flex;align-items:flex-end;padding:12px;animation:hafade .2s both;z-index:5}
+.dlg{width:100%;background:#232723;border-radius:28px;padding:22px 20px 16px;display:flex;flex-direction:column;gap:14px;animation:hapop .3s cubic-bezier(.2,0,0,1) both}
+.dlg h2{font-size:22px;font-weight:400;margin:0}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#a9b0a7}
+.fld input,.fld select{min-height:48px;width:100%;border-radius:12px;border:1px solid #5a605a;background:#1a1d1a;color:#e3e6e1;padding:0 14px;font-size:15px}
+.fld input:focus,.fld select:focus{outline:2px solid var(--ac);outline-offset:1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.acts{display:flex;gap:8px;justify-content:flex-end}
+@keyframes hain{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes hafade{from{opacity:0}to{opacity:1}}
+@keyframes hapop{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.rail{display:flex;flex-direction:column;position:relative;padding-left:26px}
+.rail::before{content:"";position:absolute;left:8px;top:14px;bottom:14px;width:2px;background:#3a3f3a}
+.it{position:relative;padding-bottom:8px;animation:hain .4s cubic-bezier(.2,0,0,1) both}
+.node{position:absolute;left:-25px;top:19px;width:16px;height:16px;border-radius:8px;border:2px solid var(--ac);background:#1a1d1a;transition:background .25s,transform .25s}
+.it.on .node{background:var(--ac);transform:scale(1.2)}
+.repo{display:flex;align-items:center;gap:10px;justify-content:space-between;min-height:56px;width:100%;background:transparent;border:0;border-radius:14px;padding:6px 10px;color:#e3e6e1;text-align:left;transition:background .2s}
+.repo:hover{background:#20241f}
+.repo .n{font-size:14px;overflow-wrap:anywhere}
+.tagc{font-size:13px;font-weight:600;border-radius:8px;padding:4px 8px;background:#2a2440;color:#cdbcff;white-space:nowrap}
+.more{margin:0 10px 6px;background:#20241f;border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px;font-size:13px;animation:hain .3s both}
+.more a{color:var(--ac);min-height:44px;display:inline-flex;align-items:center}
+.cur{display:inline-block;width:8px;height:15px;background:#7ee0b8;vertical-align:-2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.ha, .ha *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<div class="top"><h1>Home</h1><span class="sub">Tuesday 24 November</span></div>
+<div class="card">
+<div class="ch"><span>GitHub releases</span><button class="btn tonal" onClick="{{ openDlg }}">Options</button></div>
+<span class="sub mono">4 repositories watched, checked 08:00 <span class="cur" aria-hidden="true"></span></span>
+<div class="rail">
+<sc-for list="{{repos}}" as="r" hint-placeholder-count="4">
+<div class="{{r.cls}}">
+<span class="node" aria-hidden="true"></span>
+<button class="repo" aria-expanded="{{r.aria}}" onClick="{{ r.pick }}"><span class="n mono">{{r.name}}</span><span class="tagc mono">{{r.tag}}</span></button>
+<sc-if value="{{r.open}}" hint-placeholder-val="{{ false }}">
+<div class="more">
+<div class="ent"><span>Latest release</span><b class="mono">{{r.tag}}</b></div>
+<div class="ent"><span>Published</span><b class="mono">{{r.when}}</b></div>
+<a href="{{r.url}}">Open the release notes</a>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+<div class="scrim">
+<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-t">
+<h2 id="dlg-t">Watched repositories</h2>
+<label class="fld" for="gh-repo">Add a public repository<input id="gh-repo" class="mono" type="text" placeholder="owner/name" value="home-assistant/operating-system"/></label>
+<label class="fld" for="gh-int">Check for new releases<select id="gh-int"><option>Every hour</option><option selected="selected">Every 6 hours</option><option>Once a day</option></select></label>
+<span class="sub">Only public repositories are supported, so no token is needed.</span>
+<div class="acts"><button class="btn text" onClick="{{ closeDlg }}">Cancel</button><button class="btn" onClick="{{ closeDlg }}">Save</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#a78bfa","options":["#a78bfa","#7ee0b8","#8ab4f8","#f0a6ca"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = Object.assign({ open: false }, { sel: 0 }); }
+  renderVals() {
+    const accent = this.props.accent ?? "#a78bfa";
+    const motion = this.props.motion ?? true;
+    const st = this.state;
+    const set = (o) => this.setState(o);
+    const v = { accent, rootClass: motion ? "ha" : "ha still", open: st.open, openDlg: () => set({ open: true }), closeDlg: () => set({ open: false }) };
+    const R = [
+      ["home-assistant/core", "2026.11.3", "20 Nov 2026, 19:42"],
+      ["esphome/esphome", "2026.11.1", "18 Nov 2026, 02:15"],
+      ["home-assistant/frontend", "20261118.0", "18 Nov 2026, 14:03"],
+      ["Koenkk/zigbee2mqtt", "2.9.1", "1 Nov 2026, 20:30"]
+    ];
+    v.repos = R.map((r, i) => ({ name: r[0], tag: r[1], when: r[2], url: "https://github.com/" + r[0] + "/releases/tag/" + r[1], open: i === st.sel, cls: i === st.sel ? "it on" : "it", aria: i === st.sel ? "true" : "false", pick: () => set({ sel: i === st.sel ? -1 : i }) }));
+    return v;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,8 +1,13 @@
 {
-  "accent": "#1565c0",
-  "secondary": "#4dd0e1",
-  "heading_font": "Poppins",
-  "body_font": "Roboto",
+  "accent": "#2f5bff",
+  "secondary": "#0a0a0a",
+  "heading_font": "Instrument Serif",
+  "body_font": "Geist Mono",
+  "card_color": "#7aa2ff",
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;600&display=swap",
   "tagline": "The smallest working package.",
-  "description": "A minimal example integration that creates one sensor reporting its own version."
+  "hero_lead": "The smallest thing that installs. One integration, one sensor, and the sensor says which version of the package it came from. Start here if you want to build your own.",
+  "what_heading": "It proves the pipeline works",
+  "description": "A minimal example integration that creates one sensor reporting its own version.",
+  "theme": "hello_package"
 }

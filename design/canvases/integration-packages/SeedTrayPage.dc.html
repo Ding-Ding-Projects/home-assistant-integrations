@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Seed tray website page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;display=swap"/>
+<style>
+body{margin:0}
+.sd{box-sizing:border-box;background:#f3ead7;color:#2b2118;font-family:Newsreader,Georgia,serif;font-size:19px;line-height:1.5;overflow:hidden}
+.sd *{box-sizing:border-box}
+.sd a{color:var(--ac)}
+.w{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.bg{font-family:"Bricolage Grotesque",system-ui,sans-serif}
+.nav{display:flex;gap:8px 22px;flex-wrap:wrap;align-items:center;padding-top:16px;padding-bottom:16px;font-size:15px;font-weight:500}
+.nav a{min-height:44px;display:inline-flex;align-items:center;color:#2b2118;text-decoration:none;border-radius:22px;padding:0 14px;transition:background .2s}
+.nav a:hover{background:#e6d9be}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding-top:clamp(16px,3vw,36px);padding-bottom:28px}
+.hero h1{font-size:clamp(52px,9vw,128px);font-weight:800;line-height:.9;letter-spacing:-.04em;margin:0;animation:sdin .6s cubic-bezier(.2,0,0,1) both}
+.hero h1 em{font-family:Newsreader,Georgia,serif;font-style:italic;font-weight:400;color:var(--ac);letter-spacing:-.02em}
+.hero p{margin:0;max-width:52ch}
+.btn{min-height:52px;padding:0 26px;border-radius:26px;background:var(--ac);color:#fffaf0 !important;text-decoration:none;display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:16px;transition:transform .25s cubic-bezier(.2,1.4,.3,1)}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.tray{background:#2b2118;border-radius:28px;padding:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;width:100%;margin-bottom:44px}
+.cell{background:#3a2c20;border-radius:18px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:4px;color:#f3ead7;text-align:center;animation:sdin .5s cubic-bezier(.2,0,0,1) both;transition:transform .25s cubic-bezier(.2,1.4,.3,1), background .25s}
+.cell:hover{transform:translateY(-6px);background:#463628}
+.cell svg{color:#8fd07f}
+.cell.ready svg{color:#f4c15d}
+.cell b{font-size:17px;font-weight:800;line-height:1.1}
+.cell span{font-size:15px;color:#d9cbb4;line-height:1.25}
+.grow{animation:sdgrow .9s cubic-bezier(.2,1.4,.3,1) both;transform-origin:50% 100%;transform-box:fill-box}
+.pk{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:22px;padding-bottom:44px}
+.p{background:#fffaf0;border:2px dashed #b9a784;border-radius:26px;padding:26px 24px;display:flex;flex-direction:column;gap:10px;transition:transform .3s cubic-bezier(.2,0,0,1), border-color .3s}
+.p:hover{transform:rotate(-.6deg) translateY(-4px);border-color:var(--ac)}
+.p.wide{grid-column:1 / -1}
+.p h2{font-size:30px;font-weight:800;letter-spacing:-.025em;line-height:1.02;margin:0}
+.p .k{font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--ac)}
+.p p{margin:0}
+.p ol{margin:0;padding-left:22px}
+.stages{display:flex;gap:10px;flex-wrap:wrap}
+.stages span{background:#e6d9be;border-radius:18px;padding:6px 14px;font-size:15px;font-weight:500}
+.tb{width:100%;border-collapse:collapse;font-size:16px}
+.tb th,.tb td{text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid #d9cbae;vertical-align:top}
+.tb th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;font-weight:500}
+.tb code{font-size:13px;overflow-wrap:anywhere}
+.scroll{overflow-x:auto}
+.foot{padding-top:8px;padding-bottom:36px;font-size:15px;font-weight:500}
+@keyframes sdin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes sdgrow{from{transform:scaleY(0)}to{transform:none}}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.sd, .sd *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<nav class="w nav bg" aria-label="Site">
+<a href="../" style="margin-right: auto; padding-left: 0">All integrations</a>
+<a href="#setup">Setup</a>
+<a href="#entities">Entities</a>
+<a href="#install">Install</a>
+<a href="#changelog">Changelog</a>
+</nav>
+<div class="w">
+<header class="hero">
+<h1 class="bg">Seed tray, <em>from sown to planted out</em></h1>
+<p>Tell Home Assistant what you sowed and when. It follows each sowing through germination to transplant day and counts down the days in between.</p>
+<a class="btn bg" href="../packages/seed_tray-1.0.0.hapkg" download=""><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"></path></svg>Download seed_tray-1.0.0.hapkg</a>
+<span class="bg" style="font-size: 14px">Version 1.0.0, published 21 November 2026</span>
+</header>
+<div class="tray" role="img" aria-label="A sample tray on 24 November: seven sowings at different stages">
+<sc-for list="{{cells}}" as="c" hint-placeholder-count="7">
+<div class="{{c.cls}}" style="animation-delay: {{c.delay}}">
+<sc-if value="{{c.s0}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="17" rx="2.6" ry="1.8"></ellipse><path d="M5 21h14"></path></svg></sc-if>
+<sc-if value="{{c.s1}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21h14"></path><g class="grow"><path d="M12 21v-7M12 14c0-2.6-2-4-4.5-4 0 2.6 2 4 4.5 4zM12 15.5c0-2 1.6-3.2 3.8-3.2 0 2-1.6 3.2-3.8 3.2z"></path></g></svg></sc-if>
+<sc-if value="{{c.s2}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21h14"></path><g class="grow"><path d="M12 21V8M12 12c0-4-3-6-7-6 0 4 3 6 7 6zM12 15c0-3 2.5-5 6-5 0 3-2.5 5-6 5zM12 8c0-2 1-3.5 2.6-4.4"></path></g></svg></sc-if>
+<b class="bg">{{c.name}}</b>
+<span>{{c.stage}}</span>
+<span>{{c.leftText}}</span>
+</div>
+</sc-for>
+</div>
+<div class="pk">
+<section class="p">
+<span class="k bg">What it does</span>
+<h2 class="bg">Three stages, worked out from two numbers</h2>
+<p>Every sowing has a sow date, the days it usually takes to germinate, and the days until it is ready to transplant. From those the integration reports where it is now.</p>
+<div class="stages bg"><span>Germinating</span><span>Growing on</span><span>Ready to transplant</span></div>
+</section>
+<section class="p" id="setup">
+<span class="k bg">Setup</span>
+<h2 class="bg">Sow, then note it down</h2>
+<ol>
+<li>Settings, Devices and services, Add integration, Seed tray.</li>
+<li>Pick a crop or type your own name.</li>
+<li>Set the sow date, days to germinate and days to transplant.</li>
+</ol>
+</section>
+<section class="p wide" id="entities">
+<span class="k bg">Entities created</span>
+<h2 class="bg">Two sensors per sowing</h2>
+<div class="scroll">
+<table class="tb">
+<thead><tr><th scope="col" class="bg">Entity</th><th scope="col" class="bg">Shows</th><th scope="col" class="bg">Example, radish sown 16 November</th></tr></thead>
+<tbody>
+<tr><td><code>sensor.radish_stage</code></td><td>Germinating, Growing on, or Ready to transplant</td><td>Growing on</td></tr>
+<tr><td><code>sensor.radish_days_to_transplant</code></td><td>Whole days left, never below zero</td><td>6</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="p">
+<span class="k bg">Options</span>
+<h2 class="bg">Adjust as the tray tells you</h2>
+<p>Seeds do not read the packet. Open Configure to change the days to germinate or transplant for any sowing, move its sow date, or remove it once it is planted out.</p>
+</section>
+<section class="p" id="install">
+<span class="k bg">Install</span>
+<h2 class="bg">Drop the file on the Marketplace</h2>
+<p>Download the package, open the Marketplace page in Home Assistant, and drag the file anywhere onto it. Check the source and the verified checksums, confirm, then restart when asked. On a phone, use Install from a package file.</p>
+</section>
+<section class="p wide" id="changelog">
+<span class="k bg">Changelog</span>
+<h2 class="bg">1.0.0, 21 November 2026</h2>
+<p>First release: sowings with a sow date, days to germinate and days to transplant; stage and days-to-transplant sensors.</p>
+</section>
+</div>
+<footer class="foot bg">Source: <a href="https://github.com/Ding-Ding-Projects/home-assistant-integrations/tree/main/seed_tray">Ding-Ding-Projects/home-assistant-integrations/seed_tray</a></footer>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#2f7a2c","options":["#2f7a2c","#a8501c","#1d6f78","#8a5a00"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":1280,"height":1700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#2f7a2c';
+    const motion = this.props.motion ?? true;
+    const C = [['Radish', 16, 4, 14], ['Lettuce', 10, 5, 28], ['Spinach', 12, 7, 28], ['Carrot', 18, 14, 35], ['Sugar snap pea', 3, 8, 21], ['Mung bean', 20, 5, 18], ['Adzuki bean', 14, 7, 21]];
+    const cells = C.map((c, i) => {
+      const d = 24 - c[1];
+      const left = Math.max(0, c[3] - d);
+      return {
+        name: c[0],
+        stage: d < c[2] ? 'Germinating' : (left > 0 ? 'Growing on' : 'Ready to transplant'),
+        leftText: left > 0 ? left + ' days to transplant' : 'Plant out now',
+        s0: d < c[2], s1: d >= c[2] && left > 0, s2: left === 0,
+        cls: left === 0 ? 'cell ready' : 'cell',
+        delay: (0.07 * i).toFixed(2) + 's'
+      };
+    });
+    return { accent, rootClass: motion ? 'sd' : 'sd still', cells };
+  }
+}
+</script>
+</body>
+</html>

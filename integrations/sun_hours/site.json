@@ -1,8 +1,13 @@
 {
-  "accent": "#f9a825",
-  "secondary": "#ef6c00",
-  "heading_font": "Outfit",
-  "body_font": "DM Sans",
+  "accent": "#ff9a1f",
+  "secondary": "#1d1b3a",
+  "heading_font": "Unbounded",
+  "body_font": "Figtree",
+  "card_color": "#ffb347",
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Figtree:wght@400;500;700&display=swap",
   "tagline": "Watch the days grow and shrink.",
-  "description": "Reports minutes of daylight today and how much that changed since yesterday, from your Home Assistant location."
+  "hero_lead": "Sun hours tells Home Assistant how long the day is at your home, and whether today is longer or shorter than yesterday.",
+  "what_heading": "Two numbers from where you live",
+  "description": "Reports minutes of daylight today and how much that changed since yesterday, from your Home Assistant location.",
+  "theme": "sun_hours"
 }
