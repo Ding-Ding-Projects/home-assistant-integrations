@@ -23,8 +23,9 @@ ROOT = Path(__file__).resolve().parent.parent
 INTEGRATIONS = ROOT / "integrations"
 DIST = ROOT / "dist"
 REPOSITORY = "Ding-Ding-Projects/home-assistant-integrations"
+UPDATE_URL = f"https://github.com/{REPOSITORY}/releases/latest/download/index.json"
 FIXED_TIME = (2020, 1, 1, 0, 0, 0)
-EXCLUDED_NAMES = {"README.md"}
+EXCLUDED_NAMES = {"README.md", "CHANGELOG.md", "site.json"}
 EXCLUDED_DIRS = {"__pycache__"}
 
 
@@ -89,6 +90,7 @@ def build_one(folder: Path) -> tuple[dict, bytes]:
         "description": manifest.get("description")
         or f"{manifest.get('name', domain)} custom integration",
         "source": {"repository": REPOSITORY, "path": f"integrations/{domain}"},
+        "update_url": UPDATE_URL,
         "files": {name: sha256_bytes(data) for name, data in entries},
     }
     import io
@@ -106,15 +108,41 @@ def build_one(folder: Path) -> tuple[dict, bytes]:
     return hapkg, buffer.getvalue()
 
 
+def changelog_note(folder: Path) -> str:
+    """Return a short note from the top entry of CHANGELOG.md, or an empty string."""
+    path = folder / "CHANGELOG.md"
+    if not path.is_file():
+        return ""
+    seen_heading = False
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        if line.startswith("#"):
+            if line.startswith("##"):
+                if seen_heading:
+                    return ""
+                seen_heading = True
+            continue
+        if seen_heading:
+            return line.lstrip("-*").strip()
+    return ""
+
+
 def discover() -> list[Path]:
     if not INTEGRATIONS.is_dir():
         return []
     return sorted(p for p in INTEGRATIONS.iterdir() if p.is_dir() and not p.name.startswith("."))
 
 
+def release_url(tag: str, filename: str) -> str:
+    return f"https://github.com/{REPOSITORY}/releases/download/{tag}/{filename}"
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="validate without writing")
+    parser.add_argument("--tag", default="local", help="release tag used in download URLs")
     args = parser.parse_args(argv)
 
     folders = discover()
@@ -137,10 +165,14 @@ def main(argv: list[str] | None = None) -> int:
         index.append(
             {
                 "domain": hapkg["domain"],
+                "kind": hapkg["kind"],
                 "title": hapkg["title"],
                 "version": hapkg["version"],
                 "file": filename,
+                "url": release_url(args.tag, filename),
                 "sha256": sha256_bytes(data),
+                "size": len(data),
+                "notes": changelog_note(folder),
             }
         )
         if args.check:

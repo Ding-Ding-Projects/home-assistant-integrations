@@ -1,0 +1,8 @@
+{
+  "accent": "#5e35b1",
+  "secondary": "#26c6da",
+  "heading_font": "Space Grotesk",
+  "body_font": "Inter",
+  "tagline": "Know the moment a project ships.",
+  "description": "Watches public GitHub repositories and reports each one's latest release tag and publish time, with no account or token."
+}

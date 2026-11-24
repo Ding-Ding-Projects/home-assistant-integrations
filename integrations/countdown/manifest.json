@@ -1,0 +1,14 @@
+{
+  "domain": "countdown",
+  "name": "Countdown",
+  "codeowners": [
+    "@Ding-Ding-Projects"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/Ding-Ding-Projects/home-assistant-integrations/tree/main/integrations/countdown",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/Ding-Ding-Projects/home-assistant-integrations/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

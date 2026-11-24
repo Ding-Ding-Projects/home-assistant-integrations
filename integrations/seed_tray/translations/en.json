@@ -1,0 +1,53 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add a seed tray",
+        "description": "Describe the crop and its timings.",
+        "data": {
+          "name": "Crop or tray name",
+          "sow_date": "Sow date",
+          "germination_days": "Days to germinate",
+          "transplant_days": "Days until transplant"
+        }
+      }
+    },
+    "error": {
+      "transplant_before_germination": "Days until transplant must be greater than days to germinate."
+    },
+    "abort": {
+      "already_configured": "A tray with that name already exists."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Seed Tray options",
+        "data": {
+          "sow_date": "Sow date",
+          "germination_days": "Days to germinate",
+          "transplant_days": "Days until transplant"
+        }
+      }
+    },
+    "error": {
+      "transplant_before_germination": "Days until transplant must be greater than days to germinate."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "stage": {
+        "name": "Stage",
+        "state": {
+          "planned": "Planned",
+          "germinating": "Germinating",
+          "growing": "Growing",
+          "ready_to_transplant": "Ready to transplant"
+        }
+      },
+      "days_to_transplant": {
+        "name": "Days to transplant"
+      }
+    }
+  }
+}

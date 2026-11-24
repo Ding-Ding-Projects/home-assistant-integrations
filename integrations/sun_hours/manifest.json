@@ -1,0 +1,14 @@
+{
+  "domain": "sun_hours",
+  "name": "Sun Hours",
+  "codeowners": [
+    "@Ding-Ding-Projects"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/Ding-Ding-Projects/home-assistant-integrations/tree/main/integrations/sun_hours",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/Ding-Ding-Projects/home-assistant-integrations/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

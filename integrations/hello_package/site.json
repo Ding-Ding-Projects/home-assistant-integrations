@@ -1,0 +1,8 @@
+{
+  "accent": "#1565c0",
+  "secondary": "#4dd0e1",
+  "heading_font": "Poppins",
+  "body_font": "Roboto",
+  "tagline": "The smallest working package.",
+  "description": "A minimal example integration that creates one sensor reporting its own version."
+}

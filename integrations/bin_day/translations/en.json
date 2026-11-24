@@ -1,0 +1,44 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add a collection stream",
+        "description": "Choose a name, a date a collection happens on, and how many weeks apart collections are.",
+        "data": {
+          "name": "Name",
+          "start_date": "A collection date",
+          "interval_weeks": "Weeks between collections"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "A stream with that name already exists."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Bin Day options",
+        "data": {
+          "interval_weeks": "Weeks between collections",
+          "evening_hour": "Hour the evening reminder starts"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next_collection": {
+        "name": "Next collection"
+      },
+      "days_until": {
+        "name": "Days until collection"
+      }
+    },
+    "binary_sensor": {
+      "put_bins_out": {
+        "name": "Put the bins out tonight"
+      }
+    }
+  }
+}

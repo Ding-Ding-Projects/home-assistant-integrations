@@ -1,0 +1,43 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add a date",
+        "description": "Name the date and choose whether it repeats every year.",
+        "data": {
+          "name": "Name",
+          "date": "Date",
+          "yearly": "Repeats every year"
+        }
+      }
+    },
+    "error": {
+      "invalid_date": "Enter a valid date.",
+      "empty_name": "Enter a name."
+    },
+    "abort": {
+      "already_configured": "A countdown with that name already exists."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Countdown options",
+        "data": {
+          "date": "Date",
+          "yearly": "Repeats every year"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "days_until": {
+        "name": "Days until"
+      },
+      "next_date": {
+        "name": "Next date"
+      }
+    }
+  }
+}

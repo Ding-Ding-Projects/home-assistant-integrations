@@ -1,0 +1,23 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sun Hours",
+        "description": "Adds daylight sensors for your Home Assistant location."
+      }
+    },
+    "abort": {
+      "already_configured": "Sun Hours is already set up."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "daylight_today": {
+        "name": "Daylight today"
+      },
+      "daylight_change": {
+        "name": "Daylight change vs yesterday"
+      }
+    }
+  }
+}

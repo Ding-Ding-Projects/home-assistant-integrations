@@ -1,0 +1,8 @@
+{
+  "accent": "#c2185b",
+  "secondary": "#ff8a65",
+  "heading_font": "Playfair Display",
+  "body_font": "Lato",
+  "tagline": "Days until the dates that matter.",
+  "description": "Counts down to any number of named dates, repeating yearly (birthdays, anniversaries, renewals) or one-off."
+}

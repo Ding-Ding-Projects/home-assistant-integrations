@@ -1,0 +1,8 @@
+{
+  "accent": "#f9a825",
+  "secondary": "#ef6c00",
+  "heading_font": "Outfit",
+  "body_font": "DM Sans",
+  "tagline": "Watch the days grow and shrink.",
+  "description": "Reports minutes of daylight today and how much that changed since yesterday, from your Home Assistant location."
+}

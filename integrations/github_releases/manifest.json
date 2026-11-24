@@ -1,0 +1,14 @@
+{
+  "domain": "github_releases",
+  "name": "GitHub Releases",
+  "codeowners": [
+    "@Ding-Ding-Projects"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/Ding-Ding-Projects/home-assistant-integrations/tree/main/integrations/github_releases",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/Ding-Ding-Projects/home-assistant-integrations/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

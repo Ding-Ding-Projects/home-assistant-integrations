@@ -1,0 +1,29 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Watch a repository",
+        "description": "Enter a public repository as owner/repo.",
+        "data": {
+          "repo": "Repository"
+        }
+      }
+    },
+    "error": {
+      "invalid_repo": "Enter a repository like owner/repo."
+    },
+    "abort": {
+      "already_configured": "That repository is already being watched."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "latest_release": {
+        "name": "Latest release"
+      },
+      "published": {
+        "name": "Published"
+      }
+    }
+  }
+}
