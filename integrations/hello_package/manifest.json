@@ -1,0 +1,11 @@
+{
+  "domain": "hello_package",
+  "name": "Hello Package",
+  "codeowners": ["@Ding-Ding-Projects"],
+  "config_flow": true,
+  "documentation": "https://github.com/Ding-Ding-Projects/home-assistant-integrations/tree/main/integrations/hello_package",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/Ding-Ding-Projects/home-assistant-integrations/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

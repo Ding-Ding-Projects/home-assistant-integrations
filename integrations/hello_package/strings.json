@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Hello Package",
+        "description": "Add the demo sensor that reports the installed package version."
+      }
+    },
+    "abort": {
+      "already_configured": "Hello Package is already set up."
+    }
+  }
+}
