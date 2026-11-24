@@ -12,6 +12,7 @@ integration folders on every push to `main`).
 | --- | --- |
 | [`bin_day`](integrations/bin_day/README.md) | Rubbish and recycling collection schedule, with a "put the bins out tonight" sensor |
 | [`countdown`](integrations/countdown/README.md) | Days until named dates, yearly or one-off |
+| [`edge_tts`](integrations/edge_tts/README.md) | Text to speech with Microsoft Edge's online voices, no account or key |
 | [`github_releases`](integrations/github_releases/README.md) | Latest release of public GitHub repositories, no token needed |
 | [`seed_tray`](integrations/seed_tray/README.md) | Seed-starting tray stage and days to transplant |
 | [`sun_hours`](integrations/sun_hours/README.md) | Daylight minutes today and change versus yesterday |

@@ -1,0 +1,19 @@
+{
+  "domain": "edge_tts",
+  "name": "Edge TTS",
+  "codeowners": [
+    "@Ding-Ding-Projects"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "tts"
+  ],
+  "documentation": "https://ding-ding-projects.github.io/home-assistant-integrations/edge_tts/",
+  "integration_type": "service",
+  "iot_class": "cloud_push",
+  "issue_tracker": "https://github.com/Ding-Ding-Projects/home-assistant-integrations/issues",
+  "requirements": [
+    "edge-tts==7.3.1"
+  ],
+  "version": "1.0.0"
+}

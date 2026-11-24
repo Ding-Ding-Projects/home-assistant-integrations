@@ -41,6 +41,10 @@
   {
    "id": "hello_package",
    "name": "Hello package"
+  },
+  {
+   "id": "edge_tts",
+   "name": "Edge TTS"
   }
  ],
  "boards": {
@@ -198,6 +202,25 @@
    "page": "hello_package",
    "title": "Hello package in Home Assistant",
    "is_interactive": true
+  },
+  "EdgeTtsPage.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1280,
+   "h": 1700,
+   "page": "edge_tts",
+   "title": "Edge TTS website page",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "EdgeTtsCard.dc.html": {
+   "x": 1720,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "page": "edge_tts",
+   "title": "Edge TTS in Home Assistant",
+   "is_interactive": true
   }
  },
  "order": [
@@ -217,7 +240,9 @@
   "SunHoursPage.dc.html",
   "SunHoursCard.dc.html",
   "HelloPackagePage.dc.html",
-  "HelloPackageCard.dc.html"
+  "HelloPackageCard.dc.html",
+  "EdgeTtsPage.dc.html",
+  "EdgeTtsCard.dc.html"
  ],
  "notes": {
   "n_PackageDrop": {
@@ -245,7 +270,7 @@
    "x": 1320,
    "y": 0,
    "w": 320,
-   "text": "The public website home page listing all six integrations, each card carrying its own colour and motif. Try the light and dark switch in the header or the dark Tweak, and hover the cards. Tweaks: accent, motion, dark. Everything here is a design; nothing is implemented or verified yet.",
+   "text": "The public website home page listing all seven integrations, each card carrying its own colour and motif. Try the light and dark switch in the header or the dark Tweak, and hover the cards. Tweaks: accent, motion, dark. Everything here is a design; nothing is implemented or verified yet.",
    "page": "site"
   },
   "n_SiteHomePhone": {
@@ -402,6 +427,28 @@
    "kind": "title1",
    "maxW": 2470,
    "page": "hello_package"
+  },
+  "n_EdgeTtsPage": {
+   "x": 1320,
+   "y": 0,
+   "w": 320,
+   "text": "The Edge TTS page on the integrations website: what it does, setup, entities created, options with a sample speak action, install by drag and drop, and the changelog. Sound-desk identity: deep petrol with a signal rose accent on ice white, Syne with Atkinson Hyperlegible, a row of moving sound bars and channel-strip level meters. Press Speak or Stop to start and rest the bars, and tap a language chip to change the sample voice. No sound is played. Tweaks: accent, motion. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "edge_tts"
+  },
+  "n_EdgeTtsCard": {
+   "x": 2150,
+   "y": 0,
+   "w": 320,
+   "text": "How Edge TTS looks inside Home Assistant: the Text to speech dialog for a media player, in the dark house style with this integration's accent and sound-bar motif. Search the voices, filter by language, move the speed and pitch sliders, then press Speak to step through generating and playing. Turn on Simulate no connection and press Speak to see the error, or jump to any state with the stage Tweak (idle, generating, playing, error). Open Options for the defaults dialog. No sound is played. Tweaks: accent, motion, stage. Everything here is a design; nothing is implemented or verified yet.",
+   "page": "edge_tts"
+  },
+  "t_edge_tts": {
+   "x": 0,
+   "y": -300,
+   "text": "Edge TTS",
+   "kind": "title1",
+   "maxW": 2470,
+   "page": "edge_tts"
   }
  },
  "designSystems": []

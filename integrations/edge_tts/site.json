@@ -1,0 +1,13 @@
+{
+  "accent": "#ff6f9c",
+  "secondary": "#0c3a41",
+  "heading_font": "Syne",
+  "body_font": "Atkinson Hyperlegible",
+  "card_color": "#ff6f9c",
+  "fonts_url": "https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap",
+  "tagline": "Give your home a voice.",
+  "hero_lead": "Edge TTS lets Home Assistant read any text aloud through your speakers, using the online read-aloud voices from Microsoft Edge. Many languages and hundreds of neural voices, with no account and no key.",
+  "what_heading": "Text in, speech out",
+  "description": "Reads any text aloud on your speakers with the Microsoft Edge online voices. No account or key.",
+  "theme": "edge_tts"
+}

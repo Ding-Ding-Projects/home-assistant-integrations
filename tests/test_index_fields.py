@@ -4,7 +4,7 @@ import json
 import build_packages as bp
 
 REPO_URL = "https://github.com/Ding-Ding-Projects/home-assistant-integrations"
-DOMAINS = {"hello_package", "bin_day", "countdown", "github_releases", "seed_tray", "sun_hours"}
+DOMAINS = {"hello_package", "bin_day", "countdown", "edge_tts", "edge_tts", "github_releases", "seed_tray", "sun_hours"}
 
 
 def make_integration(root, domain="demo"):

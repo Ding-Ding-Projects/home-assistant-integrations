@@ -4,10 +4,11 @@ from datetime import date
 
 import build_site as bs
 
-DOMAINS = ("hello_package", "bin_day", "countdown", "github_releases", "seed_tray", "sun_hours")
+DOMAINS = ("hello_package", "bin_day", "countdown", "edge_tts", "github_releases", "seed_tray", "sun_hours")
 ROOT_CLASS = {
     "bin_day": "bd", "countdown": "cd", "github_releases": "gh",
     "seed_tray": "sd", "sun_hours": "sn", "hello_package": "hp",
+    "edge_tts": "et",
 }
 
 
@@ -59,7 +60,16 @@ def test_signature_motifs(tmp_path, monkeypatch):
     assert 'class="rail"' in page("github_releases") and 'class="term' in page("github_releases")
     assert 'class="tray"' in page("seed_tray") and 'class="cell' in page("seed_tray")
     assert 'class="arc"' in page("sun_hours") and 'class="band b6"' in page("sun_hours")
+    et = page("edge_tts")
+    assert et.count('class="br"') == 48 and et.count('class="ch"') == 6 and "tts.edge_tts" in et
+    assert '#ff6f9c' in et and "Syne" in et
     assert 'class="box"' in page("hello_package") and "custom_components/hello_package/" in page("hello_package")
+
+
+def test_home_has_edge_tts_card_with_sound_bars(tmp_path, monkeypatch):
+    site = build(tmp_path, monkeypatch)
+    home = (site / "index.html").read_text(encoding="utf-8")
+    assert 'M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4' in home and "--c:#ff6f9c" in home
 
 
 def test_entities_come_from_readme(tmp_path, monkeypatch):

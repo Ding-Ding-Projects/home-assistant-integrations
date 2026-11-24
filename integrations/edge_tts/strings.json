@@ -1,0 +1,33 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Edge TTS",
+        "description": "Choose the default voice. You can change it later, and any text-to-speech call can pick another voice.",
+        "data": {
+          "voice": "Default voice"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not load the voice list from Microsoft. Check the internet connection. You can still continue with the default voice."
+    },
+    "abort": {
+      "already_configured": "Edge TTS is already set up."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Edge TTS options",
+        "description": "Defaults used when a text-to-speech call does not set its own.",
+        "data": {
+          "voice": "Default voice",
+          "rate": "Speaking rate (%)",
+          "pitch": "Pitch (Hz)",
+          "volume": "Volume (%)"
+        }
+      }
+    }
+  }
+}

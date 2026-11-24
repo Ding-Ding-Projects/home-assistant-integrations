@@ -14,5 +14,7 @@
 
 ## Integrations
 - [x] `hello_package`, `bin_day`, `countdown`, `github_releases`, `seed_tray`, `sun_hours` written with config flows, strings and logic tests
+- [x] `edge_tts` (Edge read-aloud text to speech) written with config and options flows, TTS entity, logic and engine tests (engine tested with a fake `Communicate`)
+- [x] `edge_tts` page and home card follow the Edge TTS design boards (static port, pytest)
 - [ ] Load each integration in a real Home Assistant instance (entity and config-flow code is untested)
 - [ ] Add pytest-homeassistant-custom-component tests for config flows and entities

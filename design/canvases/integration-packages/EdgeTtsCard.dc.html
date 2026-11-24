@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Edge TTS in Home Assistant</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Syne:wght@600;800&amp;display=swap"/>
+<style>
+body{margin:0}
+.ha{box-sizing:border-box;height:844px;background:#121412;color:#e3e6e1;font-family:Roboto,system-ui,sans-serif;position:relative;overflow:hidden}
+.ha *{box-sizing:border-box}
+.ha button,.ha input,.ha select,.ha textarea{font:inherit}
+.ha button{cursor:pointer}
+.scr{height:100%;overflow-y:auto;padding:12px 16px 24px;display:flex;flex-direction:column;gap:14px}
+.top{display:flex;align-items:center;min-height:48px;gap:8px}
+.top h1{font-size:22px;font-weight:500;margin:0;flex:1}
+.ib{width:44px;height:44px;border-radius:22px;border:0;background:transparent;color:#e3e6e1;display:inline-flex;align-items:center;justify-content:center;transition:background .2s}
+.ib:hover{background:#2a2f2a}
+.card{background:#1a1d1a;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px;animation:hain .45s cubic-bezier(.2,0,0,1) both}
+.card.b{animation-delay:.08s}
+.card.c{animation-delay:.16s}
+.ch{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.ch span{font-size:16px;font-weight:500}
+.sub{font-size:13px;color:#a9b0a7;line-height:1.45}
+.btn{min-height:44px;padding:0 20px;border-radius:22px;border:0;background:var(--ac);color:#0f1410;font-size:14px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn.tonal{background:#2a2f2a;color:#e3e6e1}
+.btn.text{background:transparent;color:var(--ac)}
+.btn.big{min-height:52px;border-radius:26px;font-size:16px;padding:0 26px}
+.btn.wait{background:#2a2f2a;color:#e3e6e1;cursor:progress}
+.rowb{display:flex;align-items:center;gap:12px;min-height:56px;width:100%;background:#20241f;border:2px solid transparent;border-radius:16px;padding:8px 12px;color:#e3e6e1;text-align:left;transition:transform .2s,background .2s,border-color .2s}
+.rowb:hover{transform:translateY(-2px);background:#262b26}
+.rowb.on{border-color:var(--ac)}
+.rowb .g{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;font-size:15px}
+.rowb .g span{overflow-wrap:anywhere}
+.rowb .v{font-size:13px;color:var(--ac);white-space:nowrap}
+.scrim{position:absolute;inset:0;background:rgba(8,10,8,.78);display:flex;align-items:flex-end;padding:12px;animation:hafade .2s both;z-index:5}
+.dlg{width:100%;max-height:100%;overflow-y:auto;background:#232723;border-radius:28px;padding:22px 20px 16px;display:flex;flex-direction:column;gap:12px;animation:hapop .3s cubic-bezier(.2,0,0,1) both}
+.dlg h2{font-size:22px;font-weight:400;margin:0}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#a9b0a7}
+.fld input[type=text],.fld input[type=search],.fld select,.fld textarea{min-height:48px;width:100%;border-radius:12px;border:1px solid #5a605a;background:#1a1d1a;color:#e3e6e1;padding:0 14px;font-size:15px}
+.fld textarea{min-height:76px;padding:12px 14px;resize:none;line-height:1.4}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--ac);outline-offset:1px}
+.ha input[type=range]{width:100%;min-height:44px;accent-color:var(--ac)}
+.acts{display:flex;gap:8px;justify-content:flex-end}
+.sy{font-family:Syne,system-ui,sans-serif}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:44px;padding:0 14px;border-radius:22px;border:1px solid #5a605a;background:transparent;color:#e3e6e1;font-size:14px;font-weight:500;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.chip:hover{transform:translateY(-1px);border-color:var(--ac)}
+.chip.on{background:var(--ac);border-color:var(--ac);color:#0f1410}
+.booth{background:#05282d;border-radius:20px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:10px}
+.wv{display:flex;align-items:center;gap:3px;height:72px}
+.br{flex:1 1 0;height:var(--h);border-radius:99px;background:#3d7a80;transform:scaleY(.14);transform-origin:center;transition:transform .35s cubic-bezier(.2,0,0,1), background .35s}
+.wv.gen .br{background:var(--ac);animation:hagen 1s ease-in-out infinite}
+.wv.play .br{background:var(--ac);transform:none;animation:habar .8s ease-in-out infinite alternate}
+.wv.err .br{background:#ffb4ab;transform:scaleY(.06)}
+.stat{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;color:#c4e3df}
+.stat b{font-size:20px;font-weight:800;color:#e6faf6;letter-spacing:-.02em}
+.err{display:flex;gap:10px;align-items:flex-start;background:#3a1512;color:#ffdad6;border-radius:16px;padding:12px 14px;font-size:14px;line-height:1.4;animation:hain .3s cubic-bezier(.2,0,0,1) both}
+.err svg{flex:none;margin-top:1px}
+.err b{display:block;font-weight:500;color:#ffb4ab}
+@keyframes hain{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes hafade{from{opacity:0}to{opacity:1}}
+@keyframes hapop{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes habar{from{transform:scaleY(.2)}to{transform:scaleY(1)}}
+@keyframes hagen{0%,100%{transform:scaleY(.12);opacity:.45}50%{transform:scaleY(.42);opacity:1}}
+.still .wv.play .br{transform:none}
+.still .wv.gen .br{transform:scaleY(.3)}
+@media (prefers-reduced-motion: reduce){.wv.play .br{transform:none}.wv.gen .br{transform:scaleY(.3)}}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.ha, .ha *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<div class="scr">
+<div class="top"><button class="ib" aria-label="Back"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></button><h1>Text to speech</h1><button class="btn tonal" onClick="{{ openDlg }}">Options</button></div>
+<div class="card">
+<div class="ch"><span>Edge TTS</span><span class="sub">tts.edge_tts</span></div>
+<label class="fld" for="et-msg">Message<textarea id="et-msg">The washing machine has finished.</textarea></label>
+<label class="fld" for="et-out">Play on<select id="et-out"><option selected="selected">Kitchen speaker</option><option>Living room speaker</option><option>Bedroom speaker</option></select></label>
+<div class="booth">
+<div class="{{waveClass}}" role="img" aria-label="{{waveLabel}}">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="30"><i class="br" style="--h: {{b.h}}; animation-delay: {{b.d}}"></i></sc-for>
+</div>
+<div class="stat" aria-live="polite"><b class="sy">{{statTitle}}</b><span>{{statText}}</span></div>
+</div>
+<sc-if value="{{isError}}" hint-placeholder-val="{{ false }}">
+<div class="err" role="alert"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffb4ab" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5v.5"></path></svg><span><b>Could not reach the voice service</b>Check the internet connection and try again. Nothing was played.</span></div>
+</sc-if>
+<button class="{{speakClass}}" aria-disabled="{{busyAria}}" onClick="{{ speak }}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"></path></svg>{{speakLabel}}</button>
+<button class="{{offClass}}" aria-pressed="{{offAria}}" onClick="{{ toggleOffline }}">Simulate no connection: {{offText}}</button>
+</div>
+<div class="card b">
+<div class="ch"><span>Voice</span><span class="sub">{{voiceCount}}</span></div>
+<label class="fld" for="et-q">Search voices<input id="et-q" type="search" placeholder="Name or language" value="{{q}}" onInput="{{ setQ }}"/></label>
+<div class="chips" role="group" aria-label="Filter by language">
+<sc-for list="{{langs}}" as="l" hint-placeholder-count="6"><button class="{{l.cls}}" aria-pressed="{{l.aria}}" onClick="{{ l.pick }}">{{l.name}}</button></sc-for>
+</div>
+<sc-for list="{{voices}}" as="v" hint-placeholder-count="4">
+<button class="{{v.cls}}" aria-pressed="{{v.aria}}" onClick="{{ v.pick }}"><span class="g"><span>{{v.name}}</span><span class="sub">{{v.desc}}</span></span><span class="v">{{v.mark}}</span></button>
+</sc-for>
+<sc-if value="{{noVoices}}" hint-placeholder-val="{{ false }}"><span class="sub" role="status">No voices match. Clear the search or choose All.</span></sc-if>
+</div>
+<div class="card c">
+<div class="ch"><span>This message only</span><button class="btn text" onClick="{{ resetTune }}">Reset</button></div>
+<label class="sub" for="et-rate">Speed: {{rateText}}</label>
+<input id="et-rate" type="range" min="-50" max="100" step="5" value="{{rate}}" onInput="{{ setRate }}"/>
+<label class="sub" for="et-pitch">Pitch: {{pitchText}}</label>
+<input id="et-pitch" type="range" min="-50" max="50" step="5" value="{{pitch}}" onInput="{{ setPitch }}"/>
+<span class="sub">These override the saved defaults for this message. Open Options to change the defaults.</span>
+</div>
+</div>
+<sc-if value="{{open}}" hint-placeholder-val="{{ false }}">
+<div class="scrim">
+<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-t">
+<h2 id="dlg-t">Edge TTS options</h2>
+<label class="fld" for="et-dv">Default voice<select id="et-dv"><option selected="selected">en-GB-SoniaNeural (English, United Kingdom)</option><option>en-US-AriaNeural (English, United States)</option><option>zh-HK-HiuMaanNeural (Cantonese, Hong Kong)</option><option>fr-FR-DeniseNeural (French, France)</option><option>de-DE-KatjaNeural (German, Germany)</option><option>ja-JP-NanamiNeural (Japanese, Japan)</option></select></label>
+<label class="sub" for="et-or">Rate: {{oRateText}} (from -50% to +100%)</label>
+<input id="et-or" type="range" min="-50" max="100" step="5" value="{{oRate}}" onInput="{{ setORate }}"/>
+<label class="sub" for="et-op">Pitch: {{oPitchText}} (from -50Hz to +50Hz)</label>
+<input id="et-op" type="range" min="-50" max="50" step="5" value="{{oPitch}}" onInput="{{ setOPitch }}"/>
+<label class="sub" for="et-ov">Volume: {{oVolText}}</label>
+<input id="et-ov" type="range" min="-50" max="50" step="5" value="{{oVol}}" onInput="{{ setOVol }}"/>
+<label class="fld" for="et-of">Output format<select id="et-of"><option selected="selected">MP3, 24 kHz, 48 kbit/s</option><option>MP3, 24 kHz, 96 kbit/s</option></select></label>
+<span class="sub">A single call can still override the voice, rate and pitch.</span>
+<div class="acts"><button class="btn text" onClick="{{ closeDlg }}">Cancel</button><button class="btn" onClick="{{ closeDlg }}">Save</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#ff7aa5","options":["#ff7aa5","#ffbd4a","#6fe6f2","#f0e25a"]},"motion":{"editor":"boolean","default":true},"stage":{"editor":"enum","default":"idle","options":["idle","generating","playing","error"]},"$preview":{"width":390,"height":844}}'>
+const VOICES = [
+  ['en-GB-SoniaNeural', 'English', 'English, United Kingdom, female'],
+  ['en-US-AriaNeural', 'English', 'English, United States, female'],
+  ['en-US-GuyNeural', 'English', 'English, United States, male'],
+  ['en-AU-NatashaNeural', 'English', 'English, Australia, female'],
+  ['zh-HK-HiuMaanNeural', 'Cantonese', 'Cantonese, Hong Kong, female'],
+  ['zh-HK-WanLungNeural', 'Cantonese', 'Cantonese, Hong Kong, male'],
+  ['fr-FR-DeniseNeural', 'French', 'French, France, female'],
+  ['fr-FR-HenriNeural', 'French', 'French, France, male'],
+  ['de-DE-KatjaNeural', 'German', 'German, Germany, female'],
+  ['de-DE-ConradNeural', 'German', 'German, Germany, male'],
+  ['ja-JP-NanamiNeural', 'Japanese', 'Japanese, Japan, female'],
+  ['ja-JP-KeitaNeural', 'Japanese', 'Japanese, Japan, male']
+];
+const LANGS = ['All', 'English', 'Cantonese', 'French', 'German', 'Japanese'];
+const sign = (n, u) => (n >= 0 ? '+' : '') + n + u;
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    this.state = { n: 0, open: false, q: '', lang: 'All', voice: 'en-GB-SoniaNeural', rate: 0, pitch: 0, oRate: 0, oPitch: 0, oVol: 0, offline: false };
+    this._p = null; this._s = 'idle'; this._t = null;
+  }
+  go(s) { this._s = s; this.setState({ n: this.state.n + 1 }); }
+  later(ms, s) { clearTimeout(this._t); this._t = setTimeout(() => this.go(s), ms); }
+  speak() {
+    const s = this._s;
+    if (s === 'generating') return;
+    if (s === 'playing') { clearTimeout(this._t); this.go('idle'); return; }
+    this.go('generating');
+    if (this.state.offline) this.later(1400, 'error');
+    else { this._t = setTimeout(() => { this.go('playing'); this.later(4200, 'idle'); }, 1400); }
+  }
+  renderVals() {
+    const accent = this.props.accent ?? '#ff7aa5';
+    const motion = this.props.motion ?? true;
+    const p = this.props.stage ?? 'idle';
+    if (p !== this._p) { this._p = p; this._s = p; clearTimeout(this._t); }
+    const s = this._s;
+    const st = this.state;
+    const set = (o) => this.setState(o);
+    const bars = [];
+    for (let i = 0; i < 30; i++) {
+      const h = 24 + 76 * Math.abs(Math.sin(i * 0.6 + 1) * Math.cos(i * 0.21 + 0.3));
+      bars.push({ h: h.toFixed(0) + '%', d: (-((i * 137) % 800) / 1000).toFixed(2) + 's' });
+    }
+    const q = st.q.trim().toLowerCase();
+    const match = VOICES.filter((r) => (st.lang === 'All' || r[1] === st.lang) && (q === '' || (r[0] + ' ' + r[2]).toLowerCase().indexOf(q) >= 0));
+    const voices = match.slice(0, 4).map((r) => ({
+      name: r[0], desc: r[2], cls: r[0] === st.voice ? 'rowb on' : 'rowb', aria: r[0] === st.voice ? 'true' : 'false',
+      mark: r[0] === st.voice ? 'Selected' : '', pick: () => set({ voice: r[0] })
+    }));
+    const waveCls = { idle: 'wv', generating: 'wv gen', playing: 'wv play', error: 'wv err' }[s];
+    const titles = { idle: 'Ready', generating: 'Generating', playing: 'Playing', error: 'Not sent' };
+    const texts = { idle: st.voice, generating: 'Asking the voice service', playing: 'Kitchen speaker, ' + st.voice, error: 'No audio was made' };
+    const labels = { idle: 'Speak', generating: 'Generating speech', playing: 'Stop', error: 'Try again' };
+    return {
+      accent, bars, voices,
+      rootClass: motion ? 'ha' : 'ha still',
+      open: st.open, openDlg: () => set({ open: true }), closeDlg: () => set({ open: false }),
+      waveClass: waveCls,
+      waveLabel: 'Sound bars: ' + titles[s].toLowerCase(),
+      statTitle: titles[s], statText: texts[s],
+      isError: s === 'error',
+      speakLabel: labels[s],
+      speakClass: s === 'generating' ? 'btn big wait' : 'btn big',
+      busyAria: s === 'generating' ? 'true' : 'false',
+      speak: () => this.speak(),
+      offClass: st.offline ? 'chip on' : 'chip', offAria: st.offline ? 'true' : 'false', offText: st.offline ? 'on' : 'off', toggleOffline: () => set({ offline: !st.offline }),
+      q: st.q, setQ: (e) => set({ q: e.target.value }),
+      langs: LANGS.map((l) => ({ name: l, cls: l === st.lang ? 'chip on' : 'chip', aria: l === st.lang ? 'true' : 'false', pick: () => set({ lang: l }) })),
+      noVoices: match.length === 0,
+      voiceCount: 'Showing ' + voices.length + ' of ' + match.length + ' in this sample',
+      rate: st.rate, pitch: st.pitch, rateText: sign(st.rate, '%'), pitchText: sign(st.pitch, 'Hz'),
+      setRate: (e) => set({ rate: Number(e.target.value) }), setPitch: (e) => set({ pitch: Number(e.target.value) }),
+      resetTune: () => set({ rate: 0, pitch: 0 }),
+      oRate: st.oRate, oPitch: st.oPitch, oVol: st.oVol,
+      oRateText: sign(st.oRate, '%'), oPitchText: sign(st.oPitch, 'Hz'), oVolText: sign(st.oVol, '%'),
+      setORate: (e) => set({ oRate: Number(e.target.value) }), setOPitch: (e) => set({ oPitch: Number(e.target.value) }), setOVol: (e) => set({ oVol: Number(e.target.value) })
+    };
+  }
+}
+</script>
+</body>
+</html>

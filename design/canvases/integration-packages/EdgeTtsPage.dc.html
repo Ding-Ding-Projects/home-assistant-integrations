@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Edge TTS website page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap"/>
+<style>
+body{margin:0}
+.et{box-sizing:border-box;background:#05282d;color:#e6faf6;font-family:"Atkinson Hyperlegible",system-ui,sans-serif;font-size:18px;line-height:1.55;overflow:hidden}
+.et *{box-sizing:border-box}
+.et button,.et input{font:inherit}
+.et button{cursor:pointer}
+.w{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.sy{font-family:Syne,system-ui,sans-serif}
+.mono{font-family:ui-monospace,Consolas,"Courier New",monospace}
+.nav{display:flex;gap:8px 22px;flex-wrap:wrap;align-items:center;padding-top:16px;padding-bottom:8px;font-size:15px;font-weight:700}
+.nav a{min-height:44px;display:inline-flex;align-items:center;color:#e6faf6;text-decoration:none}
+.nav a:hover{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:3px;text-decoration-color:var(--ac)}
+.hero{padding-top:clamp(20px,4vw,48px);padding-bottom:48px;display:flex;flex-direction:column;gap:22px}
+.tag{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);display:inline-flex;align-items:center;gap:10px}
+.tag i{width:10px;height:10px;border-radius:5px;background:var(--ac);animation:etblink 1.4s ease-in-out infinite}
+.hero h1{font-size:clamp(44px,9.4vw,128px);font-weight:800;line-height:.92;letter-spacing:-.045em;margin:0;animation:etin .7s cubic-bezier(.2,0,0,1) both}
+.hero h1 span{color:var(--ac)}
+.lead{margin:0;max-width:58ch;color:#c4e3df;animation:etin .7s .1s cubic-bezier(.2,0,0,1) both}
+.wave{display:flex;align-items:center;gap:clamp(2px,.5vw,6px);height:clamp(110px,16vw,190px);animation:etin .7s .2s cubic-bezier(.2,0,0,1) both}
+.br{flex:1 1 0;min-width:2px;height:var(--h);border-radius:99px;background:var(--ac);transform-origin:center;animation:etbar .85s ease-in-out infinite alternate}
+.quiet .br{animation:none;transform:scaleY(.12);background:#3d7a80;transition:transform .4s cubic-bezier(.2,0,0,1), background .4s}
+.desk{background:#0c3a41;border-radius:28px;padding:clamp(16px,2.4vw,26px);display:flex;flex-direction:column;gap:16px;animation:etin .7s .3s cubic-bezier(.2,0,0,1) both}
+.say{display:flex;flex-direction:column;gap:6px;font-size:14px;color:#a5cbc7}
+.say input{min-height:56px;width:100%;border-radius:16px;border:2px solid #2a6269;background:#05282d;color:#e6faf6;padding:0 18px;font-size:clamp(17px,1.8vw,22px)}
+.say input:focus{outline:3px solid var(--ac);outline-offset:2px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:44px;padding:0 18px;border-radius:22px;border:2px solid #2a6269;background:transparent;color:#e6faf6;font-size:15px;font-weight:700;transition:transform .2s cubic-bezier(.2,1.4,.3,1), background .2s, border-color .2s, color .2s}
+.chip:hover{transform:translateY(-2px);border-color:var(--ac)}
+.chip.on{background:var(--ac);border-color:var(--ac);color:#031b1f}
+.go{display:flex;gap:12px 18px;align-items:center;flex-wrap:wrap}
+.btn{min-height:54px;padding:0 28px;border-radius:27px;border:0;background:var(--ac);color:#031b1f !important;font-weight:700;font-size:17px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:transform .25s cubic-bezier(.2,1.4,.3,1), box-shadow .25s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 0 8px rgba(230,250,246,.12)}
+.btn.ln{background:transparent;color:#e6faf6 !important;border:2px solid #e6faf6}
+.voice{font-size:15px;color:#c4e3df}
+.voice b{color:#e6faf6}
+.band{padding-top:44px;padding-bottom:44px}
+.band .w{display:flex;flex-wrap:wrap;gap:14px 56px;align-items:flex-start}
+.ch{flex:0 0 250px;max-width:100%;display:flex;flex-direction:column;gap:10px}
+.ch b{font-size:clamp(30px,3.8vw,46px);font-weight:800;line-height:1;letter-spacing:-.04em}
+.ch span{font-size:13px;text-transform:uppercase;letter-spacing:.14em;font-weight:700}
+.vu{display:flex;gap:4px;align-items:flex-end;height:26px}
+.vu i{width:8px;border-radius:4px;background:currentColor;opacity:.28;height:100%}
+.vu i.l{opacity:1;background:var(--ac);animation:etvu 1.2s ease-in-out infinite alternate;transform-origin:bottom}
+.b3 .vu i.l{background:#05282d}
+.what{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.what h2{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:0}
+.what p{margin:0;max-width:62ch}
+.what ol{margin:0;padding-left:22px}
+.what a{color:inherit}
+.cells{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.cells div{background:#05282d;color:#e6faf6;border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:4px;transition:transform .25s cubic-bezier(.2,0,0,1)}
+.cells div:hover{transform:translateY(-4px)}
+.cells code{font-size:13px;overflow-wrap:anywhere;color:#a5cbc7}
+.cells b{font-size:24px;color:var(--ac)}
+.cells span{font-size:15px;color:#c4e3df}
+pre{margin:0;background:#031b1f;color:#e6faf6;border-radius:20px;padding:18px 20px;font-size:14px;line-height:1.6;overflow-x:auto}
+pre em{font-style:normal;color:var(--ac)}
+.b1{background:#05282d}.b2{background:#0c3a41}.b3{background:#dff5f1;color:#05282d}.b4{background:#0a3238}.b5{background:#031b1f}
+@keyframes etbar{from{transform:scaleY(.22)}to{transform:scaleY(1)}}
+@keyframes etvu{from{transform:scaleY(.55)}to{transform:scaleY(1)}}
+@keyframes etblink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes etin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.still, .still *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.et, .et *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootClass}}" style="--ac: {{accent}}">
+<nav class="w nav" aria-label="Site">
+<a href="../" style="margin-right: auto">All integrations</a>
+<a href="#setup">Setup</a>
+<a href="#entities">Entities</a>
+<a href="#options">Options</a>
+<a href="#install">Install</a>
+<a href="#changelog">Changelog</a>
+</nav>
+<header class="w hero">
+<span class="tag"><i></i>Edge TTS / text to speech</span>
+<h1 class="sy">Give your home <span>a voice.</span></h1>
+<p class="lead">Edge TTS lets Home Assistant read any text aloud through your speakers, using the online read-aloud voices from Microsoft Edge. More than 400 neural voices, many languages, no account and no key.</p>
+<div class="{{waveClass}}" role="img" aria-label="{{waveLabel}}">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="48"><i class="br" style="--h: {{b.h}}; animation-delay: {{b.d}}"></i></sc-for>
+</div>
+<div class="desk">
+<label class="say" for="et-say">Text to say (sample, no sound is played on this page)<input id="et-say" type="text" value="{{text}}" onInput="{{ setText }}"/></label>
+<div class="chips" role="group" aria-label="Sample voice language">
+<sc-for list="{{langs}}" as="l" hint-placeholder-count="5"><button class="{{l.cls}}" aria-pressed="{{l.aria}}" onClick="{{ l.pick }}">{{l.name}}</button></sc-for>
+</div>
+<div class="go">
+<button class="btn" onClick="{{ toggle }}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"></path></svg>{{speakLabel}}</button>
+<span class="voice">Voice: <b class="mono">{{voice}}</b></span>
+<a class="btn ln" href="../packages/edge_tts-1.0.0.hapkg" download="" style="margin-left: auto"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"></path></svg>Download edge_tts-1.0.0.hapkg</a>
+</div>
+</div>
+</header>
+<section class="band b2">
+<div class="w">
+<div class="ch"><span>Channel 01</span><div class="vu" aria-hidden="true"><i class="l"></i><i></i><i></i><i></i><i></i><i></i></div><b class="sy">What it does</b></div>
+<div class="what"><h2>Text in, speech out</h2><p>It adds a text-to-speech engine to Home Assistant. Anything that can speak, such as the Text to speech dialog on a media player, an automation, or a voice assistant, can use it to turn a sentence into audio and play it on a speaker.</p><p>The text is sent to Microsoft's online read-aloud service to be turned into audio, so Home Assistant needs an internet connection when it speaks. No sign-in is involved.</p></div>
+</div>
+</section>
+<section class="band b3" id="setup">
+<div class="w">
+<div class="ch"><span>Channel 02</span><div class="vu" aria-hidden="true"><i class="l"></i><i class="l"></i><i></i><i></i><i></i><i></i></div><b class="sy">Setup</b></div>
+<div class="what"><h2>Pick a voice, and it is ready</h2><ol><li>Settings, Devices and services, Add integration, Edge TTS.</li><li>Choose a language, then a default voice from the list. You can search by name.</li><li>Press Submit. The speech entity appears straight away.</li></ol></div>
+</div>
+</section>
+<section class="band b2" id="entities">
+<div class="w">
+<div class="ch"><span>Channel 03</span><div class="vu" aria-hidden="true"><i class="l"></i><i class="l"></i><i class="l"></i><i></i><i></i><i></i></div><b class="sy">Entities</b></div>
+<div class="what"><h2>One entity, three ways to use it</h2>
+<div class="cells">
+<div><code>tts.edge_tts</code><b class="sy">Media dialog</b><span>Open a media player, choose Text to speech, pick Edge TTS and type a message.</span></div>
+<div><code>tts.speak</code><b class="sy">Automations</b><span>Call the speak action with a message and the speaker to play it on.</span></div>
+<div><code>Assist pipeline</code><b class="sy">Voice assistants</b><span>Select Edge TTS as the text-to-speech step of an assistant.</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="band b4" id="options">
+<div class="w">
+<div class="ch"><span>Channel 04</span><div class="vu" aria-hidden="true"><i class="l"></i><i class="l"></i><i class="l"></i><i class="l"></i><i></i><i></i></div><b class="sy">Options</b></div>
+<div class="what"><h2>Tune how it sounds</h2>
+<div class="cells">
+<div><code>voice</code><b class="sy">400+ voices</b><span>The default voice, changeable at any time.</span></div>
+<div><code>rate</code><b class="sy">-50% to +100%</b><span>How fast it speaks.</span></div>
+<div><code>pitch</code><b class="sy">-50Hz to +50Hz</b><span>How high or low it sounds.</span></div>
+<div><code>volume</code><b class="sy">Volume</b><span>Louder or quieter than the voice's normal level.</span></div>
+<div><code>output format</code><b class="sy">Audio format</b><span>The audio quality sent to the speaker.</span></div>
+</div>
+<p>A single call can override the voice, rate and pitch without changing the defaults:</p>
+<pre class="mono" aria-label="Example speak action"><em>action:</em> tts.speak
+<em>target:</em>
+  <em>entity_id:</em> tts.edge_tts
+<em>data:</em>
+  <em>media_player_entity_id:</em> media_player.kitchen
+  <em>message:</em> "The washing machine has finished."
+  <em>options:</em>
+    <em>voice:</em> en-GB-SoniaNeural
+    <em>rate:</em> "+10%"
+    <em>pitch:</em> "-5Hz"</pre>
+</div>
+</div>
+</section>
+<section class="band b2" id="install">
+<div class="w">
+<div class="ch"><span>Channel 05</span><div class="vu" aria-hidden="true"><i class="l"></i><i class="l"></i><i class="l"></i><i class="l"></i><i class="l"></i><i></i></div><b class="sy">Install</b></div>
+<div class="what"><h2>Drop the file on the Marketplace</h2><p>Download the package, open the Marketplace page in Home Assistant, and drag the file anywhere onto it. Check the source and the verified checksums, confirm, then restart when asked. On a phone, use Install from a package file.</p></div>
+</div>
+</section>
+<section class="band b5" id="changelog">
+<div class="w">
+<div class="ch"><span>Channel 06</span><div class="vu" aria-hidden="true"><i class="l"></i><i class="l"></i><i class="l"></i><i class="l"></i><i class="l"></i><i class="l"></i></div><b class="sy">Changelog</b></div>
+<div class="what"><h2>1.0.0</h2><p>Initial release: one speech entity, a default voice chosen from more than 400, options for rate, pitch, volume and output format, and per-call overrides for voice, rate and pitch.</p><p>Source: <a href="https://github.com/Ding-Ding-Projects/home-assistant-integrations/tree/main/edge_tts">Ding-Ding-Projects/home-assistant-integrations/edge_tts</a></p></div>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#ff6f9c","options":["#ff6f9c","#ffb02e","#5fe3f0","#f2e24b"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":1280,"height":1700}}'>
+const LANGS = [
+  ['English', 'en-GB-SoniaNeural', 'Good morning. The washing machine has finished.'],
+  ['Cantonese', 'zh-HK-HiuMaanNeural', '早晨。洗衣機洗好喇。'],
+  ['French', 'fr-FR-DeniseNeural', 'Bonjour. Le lave-linge a fini.'],
+  ['German', 'de-DE-KatjaNeural', 'Guten Morgen. Die Waschmaschine ist fertig.'],
+  ['Japanese', 'ja-JP-NanamiNeural', 'おはようございます。洗濯が終わりました。']
+];
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { playing: true, lang: 0, text: LANGS[0][2] }; }
+  renderVals() {
+    const accent = this.props.accent ?? '#ff6f9c';
+    const motion = this.props.motion ?? true;
+    const st = this.state;
+    const bars = [];
+    for (let i = 0; i < 48; i++) {
+      const h = 22 + 78 * Math.abs(Math.sin(i * 0.55 + st.lang) * Math.cos(i * 0.17 + 0.4));
+      bars.push({ h: h.toFixed(0) + '%', d: (-((i * 137) % 900) / 1000).toFixed(2) + 's' });
+    }
+    const langs = LANGS.map((l, i) => ({
+      name: l[0], cls: i === st.lang ? 'chip on' : 'chip', aria: i === st.lang ? 'true' : 'false',
+      pick: () => this.setState({ lang: i, text: l[2] })
+    }));
+    return {
+      accent, bars, langs,
+      rootClass: motion ? 'et' : 'et still',
+      waveClass: st.playing ? 'wave' : 'wave quiet',
+      waveLabel: st.playing ? 'Sound bars moving while the sample is spoken' : 'Sound bars at rest',
+      speakLabel: st.playing ? 'Stop' : 'Speak',
+      voice: LANGS[st.lang][1],
+      text: st.text,
+      setText: (e) => this.setState({ text: e.target.value }),
+      toggle: () => this.setState({ playing: !st.playing })
+    };
+  }
+}
+</script>
+</body>
+</html>

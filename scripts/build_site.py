@@ -463,6 +463,57 @@ def page_github_releases(item: dict) -> str:
 <footer class="w foot mono">source: <a href="{esc(source_url(item))}">{REPOSITORY}/integrations/{esc(item['domain'])}</a></footer></div>"""
 
 
+def page_edge_tts(item: dict) -> str:
+    st = item["style"]
+    # Static sound bars: heights and delays are deterministic, so builds stay reproducible.
+    bars = "".join(
+        f'<i class="br" style="--h:{22 + int(78 * abs(math.sin(i * 0.55) * math.cos(i * 0.17 + 0.4)))}%;'
+        f'animation-delay:{-((i * 137) % 900) / 1000:.2f}s"></i>'
+        for i in range(48)
+    )
+    meters = lambda n: "".join(f'<i class="l"></i>' if k < n else "<i></i>" for k in range(6))
+    cells = "".join(
+        f'<div><code>{esc(c)}</code><span>{inline(t)}</span></div>' for c, t in entity_pairs(item)
+    )
+    setup = "".join(f"<li>{inline(s)}</li>" for s in item["setup"])
+    options = "".join(f"<li>{inline(o)}</li>" for o in item["options"])
+    intro = "".join(f"<p>{inline(p)}</p>" for p in item["intro"])
+    latest = item["changelog"][0][0] if item["changelog"] else item["version"]
+
+    def channel(n: int, title: str) -> str:
+        return (f'<div class="ch"><span>Channel {n:02d}</span><div class="vu" aria-hidden="true">{meters(n)}</div>'
+                f'<b class="sy">{esc(title)}</b></div>')
+
+    return f"""<div class="et" style="--ac:{st['accent']}">
+<nav class="w nav" aria-label="Site"><a href="../" style="margin-right:auto">All integrations</a>
+<a href="#setup">Setup</a><a href="#entities">Entities</a><a href="#options">Options</a><a href="#install">Install</a><a href="#changelog">Changelog</a></nav>
+<header class="w hero"><span class="tag"><i></i>Edge TTS / text to speech</span>
+<h1 class="sy">Give your home <span>a voice.</span></h1><p class="lead">{esc(st['hero_lead'])}</p>
+<div class="wave" role="img" aria-label="Decorative sound bars">{bars}</div>
+<div class="desk"><div class="say">Sample text, no sound is played on this page<p>Good morning. The washing machine has finished.</p></div>
+<div class="go"><span class="voice">Voice: <b class="mono">en-GB-SoniaNeural</b></span>
+<a class="btn ln" href="{esc(download_url(item))}" style="margin-left:auto">{DL_ICON}Download {esc(item['domain'])}-{esc(item['version'])}.hapkg</a></div></div></header>
+<section class="band b2"><div class="w">{channel(1, "What it does")}<div class="what"><h2>{esc(st['what_heading'])}</h2>{intro}</div></div></section>
+<section class="band b3" id="setup"><div class="w">{channel(2, "Setup")}<div class="what"><h2>Pick a voice, and it is ready</h2><ol>{setup}</ol></div></div></section>
+<section class="band b2" id="entities"><div class="w">{channel(3, "Entities")}<div class="what"><h2>What it adds</h2><div class="cells">{cells}</div></div></div></section>
+<section class="band b4" id="options"><div class="w">{channel(4, "Options")}<div class="what"><h2>Tune how it sounds</h2><ul>{options}</ul>
+<p>A single call can override the voice, rate, pitch and volume without changing the defaults:</p>
+<pre class="mono" aria-label="Example speak action"><em>action:</em> tts.speak
+<em>target:</em>
+  <em>entity_id:</em> tts.edge_tts
+<em>data:</em>
+  <em>media_player_entity_id:</em> media_player.kitchen
+  <em>message:</em> "Bonjour, le dîner est prêt."
+  <em>language:</em> fr-FR
+  <em>options:</em>
+    <em>voice:</em> fr-FR-DeniseNeural
+    <em>rate:</em> "+10%"
+    <em>pitch:</em> "-5Hz"</pre></div></div></section>
+<section class="band b2" id="install"><div class="w">{channel(5, "Install")}<div class="what"><h2>Drop the file on the Marketplace</h2>{install_text(item)}</div></div></section>
+<section class="band b5" id="changelog"><div class="w">{channel(6, "Changelog")}<div class="what"><h2>Version {esc(latest)}</h2>{changelog_html(item, "h3")}</div></div></section>
+<footer class="w foot">Source: <a href="{esc(source_url(item))}">{REPOSITORY}/integrations/{esc(item['domain'])}</a></footer></div>"""
+
+
 def seed_icon(kind: int) -> str:
     head = ('<svg aria-hidden="true" width="72" height="72" viewBox="0 0 24 24" fill="none" '
             'stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">')
@@ -618,6 +669,7 @@ THEMES = {
     "home": None,
     "bin_day": (page_bin_day, "#17191b"),
     "countdown": (page_countdown, "#f6efe4"),
+    "edge_tts": (page_edge_tts, "#05282d"),
     "github_releases": (page_github_releases, "#0b0d12"),
     "seed_tray": (page_seed_tray, "#f3ead7"),
     "sun_hours": (page_sun_hours, "#ffe8d2"),
@@ -632,6 +684,7 @@ HOME_FONTS = (
 HOME_ICONS = {
     "bin_day": '<path d="M5 7h14l-1.5 12a2 2 0 0 1-2 1.8h-7a2 2 0 0 1-2-1.8z"></path><path d="M3.5 7h17M9 4h6M10 11v6M14 11v6"></path>',
     "countdown": '<rect x="4" y="5" width="16" height="16" rx="3"></rect><path d="M4 10h16M8 3v4M16 3v4M10 14h1.5v4M14 14h2v2h-2v2h2"></path>',
+    "edge_tts": '<path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"></path>',
     "github_releases": '<path d="M3 12V4h8l10 10-8 8z"></path><circle cx="8" cy="9" r="1.6"></circle>',
     "seed_tray": '<path d="M12 21v-9M12 12c0-4-3-6-7-6 0 4 3 6 7 6zM12 15c0-3 2.5-5 6-5 0 3-2.5 5-6 5zM6 21h12"></path>',
     "sun_hours": '<path d="M2 18h20M6 18a6 6 0 0 1 12 0M12 5v3M4.5 9.5l2 2M19.5 9.5l-2 2"></path>',

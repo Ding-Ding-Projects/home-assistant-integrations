@@ -17,6 +17,7 @@ pages.
 | GitHub releases | `GithubReleasesPage`, `GithubReleasesCard` |
 | Seed tray | `SeedTrayPage`, `SeedTrayCard` |
 | Sun hours | `SunHoursPage`, `SunHoursCard` |
+| Edge TTS | `EdgeTtsPage`, `EdgeTtsCard` |
 | Hello package | `HelloPackagePage`, `HelloPackageCard` |
 
 ## Identities
@@ -29,6 +30,7 @@ pages.
 | GitHub releases | midnight with violet `#a78bfa` and mint | Space Grotesk, IBM Plex Mono | release rail and terminal block |
 | Seed tray | parchment with green `#2f7a2c` | Bricolage Grotesque, Newsreader | dark tray of cells with seedlings |
 | Sun hours | peach to night gradient with orange `#ff9a1f` | Unbounded, Figtree | sun arc with dawn-to-night bands |
+| Edge TTS | "sound desk": deep petrol `#05282d`, panels `#0c3a41` and `#031b1f`, ice white `#e6faf6` text, signal rose accent `#ff6f9c` | Syne, Atkinson Hyperlegible | rounded sound bars that bounce and settle; each section is a numbered channel with a small level meter |
 | Hello package | off-white with blue `#2f5bff` | Instrument Serif, Geist Mono | self-drawing wireframe box and file tree |
 
 Per-integration site settings (accent, fonts, card colour, hero text) live in
