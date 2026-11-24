@@ -2,7 +2,7 @@
 
 Text to speech through Microsoft Edge's online read-aloud voices, with no account or key.
 
-Edge TTS adds one text-to-speech entity, `tts.edge_tts`, backed by the [`edge-tts`](https://pypi.org/project/edge-tts/) library. It needs an internet connection each time it speaks, because the audio is generated online. The voice list is fetched when Home Assistant starts and refreshed once a day.
+Edge TTS adds one text-to-speech entity, `tts.edge_tts`, backed by the `edge-tts` library from PyPI. It needs an internet connection each time it speaks, because the audio is generated online. The voice list is fetched when Home Assistant starts and refreshed once a day.
 
 ## Setup
 
